@@ -1,9 +1,9 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include <assert.h>
 using namespace std;
 
+template <class item>
 class Bag
 {
 public:
@@ -21,9 +21,6 @@ public:
     // THE VARIABLES:
     static const int MAX = 50; 
     // The maximum of the numbers of elements in a bag
-
-    typedef int item; 
-    // Type of the element in a bag. Here, it is integer. You can change int to char, string,... or a class, struct is defined
 
     // THE FUNCTIONS:
     void showElements();
@@ -52,7 +49,7 @@ public:
     // Precondition: B.sum() + B1.sum() < MAX
     // Postcondition: tất cả các phần tử của túi B1 được thêm vào túi B
 
-    friend Bag & operator + (const Bag &B1, const Bag &B2);
+    // friend Bag<item> operator + (const Bag<item> &B1, const Bag<item> &B2);
     // Precondition: B1.sum() + B2.sum() < MAX 
     // Postcondition: trả về túi B là hợp của túi B1 và B2
 
@@ -64,7 +61,8 @@ private:
     // size of the bag
 };
 
-void Bag::showElements()
+template <class item>
+void Bag<item>::showElements()
 {
     cout << "\n\n\t\t THE ELEMENTS OF BAG: ";
     for (int i = 0; i < size; i++)
@@ -75,7 +73,8 @@ void Bag::showElements()
     
 }
 
-void Bag::insert(const item &element)
+template <class item>
+void Bag<item>::insert(const item &element)
 {
     if (size < MAX)
     {
@@ -88,7 +87,8 @@ void Bag::insert(const item &element)
     }
 }
 
-void Bag::remove(const item &element)
+template <class item>
+void Bag<item>::remove(const item &element)
 {
     for (int i = 0; i < size; i++)
     {
@@ -102,7 +102,8 @@ void Bag::remove(const item &element)
 
 }
 
-int Bag::occurr(const item &element)
+template <class item>
+int Bag<item>::occurr(const item &element)
 {
     int countElement = 0;
     for (int i = 0; i < size; i++)
@@ -116,9 +117,10 @@ int Bag::occurr(const item &element)
     return countElement;
 }
 
-void Bag::operator += (const Bag &B1)
+template <class item>
+void Bag<item>::operator += (const Bag<item> &B1)
 {
-    if ((this->sum() + B1.sum()) <= MAX)
+    if ((this->sum() + B1.sum()) <= Bag<item>::MAX)
     {
         for (int i = 0; i < B1.sum(); i++)
         {
@@ -130,23 +132,22 @@ void Bag::operator += (const Bag &B1)
     
 }
 
-Bag & operator + (const Bag &B1, const Bag &B2)
-{
-    Bag B;
-    if (B1.sum() + B2.sum() <= Bag::MAX)
-    {
-        B += B1;
-        B += B2;
-        
-    }
-    else
-    {
-        cout << "Can not enforce B1 + B2" << endl;
-    }
+// template <class item>
+// Bag<item> operator + (const Bag<item> &B1, const Bag<item> &B2)
+// {
+//     Bag<item> B;
+//     if (B1.sum() + B2.sum() <= Bag<item>::MAX)
+//     {
+//         B += B1;
+//         B += B2;
+//     }
+//     else
+//     {
+//         cout << "Can not enforce B1 + B2" << endl;
+//     }
+// }
 
-    return B;
-    
-}
+
 
 
 
