@@ -209,7 +209,7 @@ public:
 		for (int k = 0; k < last; k++)
 		{
 			cout << "Nhap phan tu thu " << k << ": ";
-			cin >> element[k];
+			cin >> *element[k];
 		}
 	}
 
@@ -218,7 +218,7 @@ public:
 		cout << "\n\n\t\t CAC PHAN TU CUA MANG";
 		for (int k = 0; k < last; k++)
 		{
-			cout << element[k] << " ";
+			cout << *element[k] << " ";
 		}
 		cout << endl;
 	}
