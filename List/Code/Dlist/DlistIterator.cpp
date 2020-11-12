@@ -23,7 +23,7 @@ public:
     bool valid() const
     {
         // Postcondition: trả về true nếu tại vị trí hiện thời có phần tử trong danh sách, trả về false nếu không
-        return (0 <= current && current <= LPtr->last; 
+        return (0 <= current && current <= LPtr->last); 
     }
 
     void advance()
@@ -38,7 +38,7 @@ public:
         }
     }
 
-    item current() const
+    item currentElement() const
     {
         if (valid())
         {
@@ -68,7 +68,7 @@ public:
             else
             // Mảng element[] đầy
             {
-                item *newArray = new item[size * 2 + 1];
+                item *newArray = new item[LPtr->size * 2 + 1];
                 if (newArray != NULL)
                 {
                     for (int k = 0; k <= current - 1; k++)
