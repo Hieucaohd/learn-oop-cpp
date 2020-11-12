@@ -1,7 +1,9 @@
-#include "List.cpp"
+#include "Dlist.cpp"
 
 int main(int argc, char const *argv[])
 {
-	/* code */
+	Dlist<int> L(100);
+	L.inputArray();
+	L.outputArray();
 	return 0;
 }

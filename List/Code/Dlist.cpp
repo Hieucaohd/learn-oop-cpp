@@ -10,14 +10,14 @@ template <class item>
 class Dlist
 {
 public:
-	friend class DlistIterator<item>;
+	friend class DlistIterator<item>; // công cụ iterator làm hàm bạn
 
 	Dlist()
 	{
 		// Constructor: khởi tạo một mảng rỗng
-		this->element = NULL;
-		this->size = 0;
-		this->last = -1;
+		element = NULL;
+		size = 0;
+		last = -1;
 	}
 
 	Dlist(int m)
@@ -28,39 +28,39 @@ public:
 		Precondition: m nguyên dương
 		Postcondition: một danh sách rỗng được khởi tạo với khả năng tối đa chứa m phần tử
 		*/
-		this->element = new item[m];
-		if (this->element != NULL)
+		element = new item[m];
+		if (element != NULL)
 		{
-			this->size = m;
-			this->last = -1;
+			size = m;
+			last = -1;
 		}
 	}
 
 	Dlist(const Dlist &L)
 	{
 		// Constructor - copy.
-		this->element = new item[L.size];
-		this->size = L.size;
-		this->last = L.last;
+		element = new item[L.size];
+		size = L.size;
+		last = L.last;
 		for (int k = 0; k <= last; k++)
 		{
-			this->element[k] = L.element[k];
+			element[k] = L.element[k];
 		}
 	}
 
 	Dlist & operator = (const Dlist &L)
 	{
 		// Định nghĩa toán tử "=" để copy từ đối tượng L.
-		if (this->size != L.size)
+		if (size != L.size)
 		{
-			delete [] this->element;
-			this->element = new item[L.size];
-			this->size = L.size;
+			delete [] element;
+			element = new item[L.size];
+			size = L.size;
 		}
-		this->last = L.last;
+		last = L.last;
 		for (int k = 0; k <= last; k++)
 		{
-			this->element[k] = L.element[k];
+			element[k] = L.element[k];
 		}
 		return *this;
 		
@@ -69,7 +69,7 @@ public:
 	~Dlist()
 	{
 		// Dis-constructor: thu hồi bộ nhớ được cấp phát động cho mảng.
-		delete [] this->element;
+		delete [] element;
 	}
 
 	bool empty() const
@@ -78,7 +78,7 @@ public:
 		Kiểm tra xem một danh sách có rỗng không.
 		Postcondition: trả về true nếu danh sách rỗng và false nếu không.
 		*/
-		return this->last < 0;
+		return last < 0;
 	}
 
 	int length() const
@@ -95,21 +95,21 @@ public:
 		/* 
 		LƯU Ý: phần tử thứ i của danh sách (i = 1, 2, 3,...) được lưu trong thành phần element[i - 1] của mảng động.
 		Xen phần tử x vào vị trí thứ i trong danh sách. 
-		Nếu length() < size thì ta sẽ cấp phát động một mảng mới có kích cỡ gấp đôi mảng cũ.
+		Nếu length() >= size thì ta sẽ cấp phát động một mảng mới có kích cỡ gấp đôi mảng cũ.
 		Precondition: 1 <= i <= length().
 		Postcondition: các phần tử của danh sách kể từ vị trí thứ i được đẩy ra sau một vị trí, phần tử x nằm ở vị trí thứ i.
 		*/
-		if (1 <= i && i <= this->length())
+		if (1 <= i && i <= length())
 		{
-			if (this->length() < this->size) 
+			if (length() < size) 
 			// Mảng element[] chưa đầy
 			{
 				last++;
-				for (int k = this->last; k >= i; k--)
+				for (int k = last; k >= i; k--)
 				{
-					this->element[k] = this->element[k - 1];
+					element[k] = element[k - 1];
 				}
-				this->element[i - 1] = x;
+				element[i - 1] = x;
 			}
 			else 
 			// Mảng element[] đầy 
@@ -124,16 +124,16 @@ public:
 						đồng thời gán phần tử newArray[i - 1] = x. 
 						*/
 						newArray[k] = element[k];
-						newArray[i - 1] = x;
 					}
+					newArray[i - 1] = x;
 
 					for (int k = i; k <= last + 1; k++)					
 					{
 						// Sao chép phần tử từ i -> last trong element[] sang newArray[].
-						newArray[k] = this->element[k - 1];
+						newArray[k] = element[k - 1];
 					}
-					delete [] this->element;
-					this->element = newArray;
+					delete [] element;
+					element = newArray;
 					last++;
 					size = 2 * size + 1;	
 				}	
@@ -145,40 +145,85 @@ public:
 	{
 		/* 
 		Thêm phần tử x vào đuôi danh sách.
+		Nếu length() >= size thì ta sẽ cấp phát động một mảng mới có kích thước gấp đôi mảng cũ.
 		Postcondition: x là phần tử ở đuôi của danh sách
 		*/
-		if (this->length() < this->size)
+		if (length() < size)
 		// Mảng element[] chưa đầy
 		{
 			last++;
-			this->element[last] = x;
+			element[last] = x;
 		}
 		else
 		// Mảng element[] đầy
 		{
-			size++;
-			item *newArray = new item[size];
-			newArray = this->element;
-			newArray[size - 1] = x;
-			delete [] this->element;
-			this->element = new item[size];
-			this->element = newArray;
+			item *newArray = new item[size * 2 + 1];
+			if (newArray != NULL)
+			{
+				for (int k = 0; k <= last; k++)
+				{
+					newArray[k] = element[k];
+				}
+				newArray[last + 1] = x;	// thêm x vào cuối mảng
+				delete [] element;
+				element = newArray;
+				last++;
+				size = 2 * size + 1;
+			}
 		}	
 	}
 
 	void delete(int i)
 	{
-
+		/*
+		Loại khỏi danh sách phần tử ở vị trí i
+		Precondition: 1 <= i <= length()
+		Postcondition: phần tử ở vị trí thứ i bị loại khỏi danh sách, các phần tử từ vị trí thứ i + 1 được lùi về sau 1 vị trí
+		*/
+		if (1 <= i && i <= length())
+		{
+			for (int k = i - 1; k < last; k++)
+			{
+				element[k] = this.element[k + 1];
+			}
+			last--;
+		}
 	}
 
 	item element(int i)
 	{
+		/*
+		Tìm phần tử ở vị trí thứ i
+		Precondition: 1 <= i <= length()
+		Postcondition: trả về phần tử ở vị trí i
+		*/
+		if (1 <= i && i <= length())
+		{
+			return element[i - 1];
+		}
+	}
 
+	void inputArray()
+	{
+		cout << "\n\n\t\t NHAP DANH SACH \n";
+		for (int k = 0; k < last; k++)
+		{
+			cout << "Nhap phan tu thu " << k << ": ";
+			cin >> element[k];
+		}
+	}
+
+	void outputArray()
+	{
+		cout << "\n\n\t\t CAC PHAN TU CUA MANG";
+		for (int k = 0; k < last; k++)
+		{
+			cout << element[k] << " ";
+		}
+		cout << endl;
 	}
 private:
 	item *element;
 	int size; // kích cỡ của mảng cấp phát động element[]. 
 	int last; // số lượng phần tử có trong danh sách length() =  last + 1.
-
-	
 };
