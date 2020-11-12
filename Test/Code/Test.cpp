@@ -10,5 +10,6 @@ int tong(const int &a,const int &b)
 int main(int argc, char const *argv[])
 {
     cout << tong(1, 2);
+    system("pause");
     return 0;
 }

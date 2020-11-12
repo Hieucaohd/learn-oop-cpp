@@ -33,7 +33,7 @@ public:
 // phương thức nhập thông  tin độc giả
 void DocGia::input()
 {
-    fflush(stdin); // xóa bợ nhớ đệm
+    fflush(stdin); // xóa bộ nhớ đệm
     cout << "\n Nhap ho ten doc gia: ";
     getline(cin, hoTen);
 
