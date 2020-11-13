@@ -3,11 +3,11 @@
 #include "Dlist.cpp"
 using namespace std;
 
-template <class item>
+template <class typeOfElement, class typeOfKey>
 class DlistIterator
 {
 public:
-	DlistIterator(const Dlist<item> &L)
+	DlistIterator(const Dlist<typeOfElement, typeOfKey> &L)
     {
         // Constructor.
         LPtr = &L;
@@ -38,7 +38,7 @@ public:
         }
     }
 
-    item currentElement() const
+    item<typeOfElement, typeOfKey> currentElement() const
     {
         if (valid())
         {
@@ -46,7 +46,7 @@ public:
         }
     }
 
-    void add(const item &x)
+    void add(const item<typeOfElement, typeOfKey> &x)
     {
         /*
         Precondition: hàm valid() trả về true
@@ -68,7 +68,7 @@ public:
             else
             // Mảng element[] đầy
             {
-                item *newArray = new item[LPtr->size * 2 + 1];
+                item<typeOfElement, typeOfKey> *newArray = new item<typeOfElement, typeOfKey>[LPtr->size * 2 + 1];
                 if (newArray != NULL)
                 {
                     for (int k = 0; k <= current - 1; k++)
@@ -110,6 +110,6 @@ public:
         }
     }
 private:
-    const Dlist<item> *LPtr;
+    const Dlist<typeOfElement, typeOfKey> *LPtr;
     int current;
 };
