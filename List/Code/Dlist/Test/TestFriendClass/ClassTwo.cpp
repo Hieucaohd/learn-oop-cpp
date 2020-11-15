@@ -6,17 +6,13 @@ using namespace std;
 class ClassTwo
 {
 public:
-	ClassTwo(const ClassOne &onePara)
+	ClassTwo(const ClassOne &hihi)
 	{
-		one = onePara;
+		one = &hihi;
 	}
-	~ClassTwo()
+	void advanceLast()
 	{
-		delete one;
-	}
-	string getNameFromClassOne()
-	{
-		return one->ten;
+		one->last += 1;
 	}
 private:
 	ClassOne *one;

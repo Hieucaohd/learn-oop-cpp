@@ -1,28 +1,25 @@
-#pragma once
-#include <iostream>
-#include <string>
-using namespace std;
+#include "Ong.h"
 
-class Ong
+template <class item>
+void Ong<item>::setColor(string color)
 {
-private:
-	string color;
-	string firstName;
-public:
-	void setColor(string color)
-	{
-		this->color = color;
-	}
-	void setFirstName(string firstName)
-	{
-		this->firstName = firstName;
-	}
-	string getColor()
-	{
-		return color;
-	}
-	string getFirstName()
-	{
-		return firstName;
-	}
-};
+	this->color = color;
+}
+
+template <class item>
+void Ong<item>::setFirstName(string firstName)
+{
+	this->firstName = firstName;
+}
+
+template <class item>
+string Ong<item>::getColor()
+{
+	return color;
+}
+
+template <class item>
+string Ong<item>::getFirstName()
+{
+	return firstName;
+}

@@ -1,12 +1,9 @@
-#include "../DlistIterator.cpp"
 #include "../Dlist.cpp"
 
-
-template <class typeOfElement, class typeOfKey>
-class Dset: public Dlist<typeOfElement, typeOfKey>
+class Dset: public Dlist
 {
 public:
-    Dset(int m): Dlist<typeOfElement, typeOfKey>(m)
+    Dset(int m): Dlist(m)
     {
         // Constructor: khởi tạo tập rỗng, có thể chứa nhiều nhất là m phần tử.
     }
@@ -14,16 +11,16 @@ public:
     bool isDsetEmpty()
     {
         // Kiểm tra xem tập có rỗng không.
-        Dlist<typeOfElement, typeOfKey>::isDlistEmpty();
+        isDlistEmpty();
     }
 
-    void DsetInsert(const item<typeOfElement, typeOfKey> &x)
+    void DsetInsert(const item &x)
     {
         // Postcondition: phần tử x trở thành thành viên của tập động.
         if (!searchElementByKey(x.key))
         // Phần tử x chưa tồn tại trong tập hợp.
         {
-            Dlist<typeOfElement, typeOfKey>::append(x);
+            append(x);
         }
         else
         {
@@ -34,11 +31,11 @@ public:
     void DsetDeleteElementByKey(typeOfKey k)
     {
         // Postcondition: phần tử với khóa k không có trong tập động.
-        for (int i = 1; i <= Dlist<typeOfElement, typeOfKey>::length(); i++)
+        for (int i = 1; i <= length(); i++)
         {
-            if (Dlist<typeOfElement, typeOfKey>::findElement(i).key == k)
+            if (findElement(i).key == k)
             {
-                Dlist<typeOfElement, typeOfKey>::deleteElement(i);
+                deleteElement(i);
                 break;
             }
         }
@@ -50,9 +47,9 @@ public:
         Postcondition: trả về true nếu tồn tại phần tử có khóa k có trong tập động 
         và false nếu không có trong tập động.
         */
-        for (int i = 1; i <= Dlist<typeOfElement, typeOfKey>::length(); i++)
+        for (int i = 1; i <= length(); i++)
         {
-            if (Dlist<typeOfElement, typeOfKey>::findElement(i).key == k)
+            if (findElement(i).key == k)
             {
                 return true;
             }
@@ -60,7 +57,7 @@ public:
         }
     }
 
-    item<typeOfElement, typeOfKey> maxKeyOfElements()
+    item maxKeyOfElements()
     {
         /*
         Precondition: tập động không rỗng.
@@ -68,27 +65,27 @@ public:
         */
         if (!isDsetEmpty())
         {
-            typeOfKey maxKey = Dlist<typeOfElement, typeOfKey>::findElement(1).key;
-            for (int i = 1; i <= Dlist<typeOfElement, typeOfKey>::length(); i++)
+            typeOfKey maxKey = findElement(1).key;
+            for (int i = 1; i <= length(); i++)
             {
-                if (Dlist<typeOfElement, typeOfKey>::findElement(i).key > maxKey)
+                if (findElement(i).key > maxKey)
                 {
-                    maxKey = Dlist<typeOfElement, typeOfKey>::findElement(i).key;
+                    maxKey = findElement(i).key;
                 } 
             }
 
             // Tìm element[maxKey]
-            for (int i = 1; i <= Dlist<typeOfElement, typeOfKey>::length(); i++)
+            for (int i = 1; i <= length(); i++)
             {
-                if (Dlist<typeOfElement, typeOfKey>::findElement(i).key == maxKey)
+                if (findElement(i).key == maxKey)
                 {
-                    return Dlist<typeOfElement, typeOfKey>::fineElement(i);
+                    return findElement(i);
                 }   
             }
         }
     }
 
-    item<typeOfElement, typeOfKey> minKeyOfElements()
+    item minKeyOfElements()
     {
         /*
         Precondition: tập động không rỗng.
@@ -96,21 +93,21 @@ public:
         */
         if (!isDsetEmpty())
         {
-            typeOfKey minKey = Dlist<typeOfElement, typeOfKey>::findElement(1).key;
-            for (int i = 1; i <= Dlist<typeOfElement, typeOfKey>::length(); i++)
+            typeOfKey minKey = findElement(1).key;
+            for (int i = 1; i <= length(); i++)
             {
-                if (Dlist<typeOfElement, typeOfKey>::findElement(i).key < minKey)
+                if (findElement(i).key < minKey)
                 {
-                    minKey = Dlist<typeOfElement, typeOfKey>::findElement(i).key;
+                    minKey = findElement(i).key;
                 }
             }
 
             // Tìm element[minKey]
-            for (int i = 1; i <= Dlist<typeOfElement, typeOfKey>::length(); i++)
+            for (int i = 1; i <= length(); i++)
             {
-                if (Dlist<typeOfElement, typeOfKey>::findElement(i).key == minKey)
+                if (findElement(i).key == minKey)
                 {
-                    return Dlist<typeOfElement, typeOfKey>::fineElement(i);
+                    return findElement(i);
                 }  
             }
         }
@@ -121,10 +118,12 @@ public:
         if (!isDsetEmpty())
         {
             cout << "\n\n\t\t NHAP KHOA KEY CHO CAC PHAN TU CUA TAP HOP: \n";
-            for (int i = 1; i <= Dlist<typeOfElement, typeOfKey>::length(); i++)
+            for (int i = 1; i <= length(); i++)
             {
+                typeOfKey key;
                 cout << "Nhap khoa key cua phan tu thu " << i << ": ";
-                cin >> Dlist<typeOfElement, typeOfKey>::element[i - 1].key;
+                cin >> key;
+                setKeyOfElements(key, i);
             }            
         }
         else
@@ -138,12 +137,11 @@ public:
         if (!isDsetEmpty())
         {
             cout << "\n\n\t\t XUAT KHOA KEY CUA CAC PHAN TU: \n";
-            for (int i = 1; i <= Dlist<typeOfElement, typeOfKey>::length(); i++)
+            for (int i = 1; i <= length(); i++)
             {
-                cout << Dlist<typeOfElement, typeOfKey>::findElement(i).item << "(" << Dlist<typeOfElement, typeOfKey>::findElement(i).key << ")" << " "; 
+                cout << findElement(i).item << "(" << findElement(i).key << ")" << " "; 
             }
             cout << endl;
-            system("pause");
         }
         else
         {

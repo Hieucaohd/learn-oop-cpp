@@ -3,24 +3,23 @@
 #include <string>
 using namespace std;
 
-template <class typeOfElement, class typeOfKey>
+typedef int typeOfItem;
+typedef int typeOfKey;
 struct item
 {
 	typeOfKey key;
-	typeOfElement item;
-
+	typeOfItem item;
 };
 
-template <class typeOfElement, class typeOfKey>
 class DlistIterator;
 
 // Dlist = Dynamic List: danh sách cấp phát động
 
-template <class typeOfElement, class typeOfKey>
+
 class Dlist
 {
 public:
-	friend class DlistIterator<typeOfElement, typeOfKey>; // công cụ iterator làm hàm bạn
+	friend class DlistIterator; // công cụ iterator làm hàm bạn
 
 	Dlist()
 	{
@@ -38,7 +37,7 @@ public:
 		Precondition: m nguyên dương
 		Postcondition: một danh sách rỗng được khởi tạo với khả năng tối đa chứa m phần tử
 		*/
-		element = new item<typeOfElement, typeOfKey>[m];
+		element = new item[m];
 		if (element != NULL)
 		{
 			size = m;
@@ -49,7 +48,7 @@ public:
 	Dlist(const Dlist &L)
 	{
 		// Constructor - copy.
-		element = new item<typeOfElement, typeOfKey>[L.size];
+		element = new item[L.size];
 		size = L.size;
 		last = L.last;
 		for (int k = 0; k <= last; k++)
@@ -64,7 +63,7 @@ public:
 		if (size != L.size)
 		{
 			delete [] element;
-			element = new item<typeOfElement, typeOfKey>[L.size];
+			element = new item[L.size];
 			size = L.size;
 		}
 		last = L.last;
@@ -100,7 +99,7 @@ public:
 		return last + 1;
 	}
 
-	void insert(const item<typeOfElement, typeOfKey> &x, int i)
+	void insert(const item &x, int i)
 	{
 		/* 
 		LƯU Ý: phần tử thứ i của danh sách (i = 1, 2, 3,...) được lưu trong thành phần element[i - 1] của mảng động.
@@ -124,7 +123,7 @@ public:
 			else 
 			// Mảng element[] đầy 
 			{
-				item<typeOfElement, typeOfKey> *newArray = new item<typeOfElement, typeOfKey>[2 * size + 1];
+				item *newArray = new item[2 * size + 1];
 				if (newArray != NULL)
 				{
 					for (int k = 0; k <= i - 2; k++) 
@@ -151,7 +150,7 @@ public:
 		}	
 	}
 
-	void append(const item<typeOfElement, typeOfKey> &x)
+	void append(const item &x)
 	{
 		/* 
 		Thêm phần tử x vào đuôi danh sách.
@@ -167,7 +166,7 @@ public:
 		else
 		// Mảng element[] đầy
 		{
-			item<typeOfElement, typeOfKey> *newArray = new item<typeOfElement, typeOfKey>[size * 2 + 1];
+			item *newArray = new item[size * 2 + 1];
 			if (newArray != NULL)
 			{
 				for (int k = 0; k <= last; k++)
@@ -194,13 +193,13 @@ public:
 		{
 			for (int k = i - 1; k < last; k++)
 			{
-				element[k] = this.element[k + 1];
+				element[k] = element[k + 1];
 			}
 			last--;
 		}
 	}
 
-	item<typeOfElement, typeOfKey> findElement(int i)
+	item findElement(int i)
 	{
 		/*
 		Tìm phần tử ở vị trí thứ i
@@ -213,8 +212,13 @@ public:
 		}
 	}
 
-	void inputDlistElement(int numberElements)
+	void inputDlistElements(int numberElements)
 	{
+		/*
+		Nhập các phần tử cho danh sách.
+		Nếu số phần tử cần nhập lớn hơn kích thước của danh sách 
+		thì ta cấp phát một mảng mới có kích thước gấp đôi mảng cũ.
+		*/
 		last = numberElements - 1;
 		if (numberElements < size)
 		// Số phần tử cần nhập nhỏ hơn kích cỡ đã được cấp phát cho mảng element[].
@@ -232,7 +236,7 @@ public:
 		{
 			size = size + numberElements; // cấp phát thêm cho mảng số phần tử bằng chính cố phần tử cần nhập
 			delete [] element;
-			element = new item<typeOfElement, typeOfKey>[size];
+			element = new item[size];
 			for (int k = 0; k <= last; k++)
 			{
 				fflush(stdin);
@@ -242,17 +246,31 @@ public:
 		}
 	}
 
-	void outputDlistElement()
+	void outputDlistElements()
 	{
-		cout << "\n\n\t\t CAC PHAN TU CUA MANG: ";
-		for (int k = 0; k <= last; k++)
+		if (!isDlistEmpty())
+		// Danh sách không rỗng
 		{
-			cout << element[k].item << " ";
+			cout << "\n\n\t\t CAC PHAN TU CUA MANG: ";
+			for (int k = 0; k <= last; k++)
+			{
+				cout << element[k].item << " ";
+			}
+			cout << endl;
 		}
-		cout << endl;
+		else
+		// Danh sách rỗng
+		{
+			cout << "Danh sach rong" << endl;
+		}
 	}
 
-	item<typeOfElement, typeOfKey> *element;
+	// void setKeyOfElements(const typeOfKey &key, const int &i)
+	// {
+	// 	element[i - 1].key = key;
+	// }
+private:
+	item *element;
 	int size; // kích cỡ của mảng cấp phát động element[]. 
 	int last; // số lượng phần tử có trong danh sách length() =  last + 1.
 };

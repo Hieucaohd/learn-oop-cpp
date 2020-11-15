@@ -1,19 +1,28 @@
-#pragma once
-#include "Ong.cpp"
+#include "Cha.h"
 
-class Cha: public Ong
+template <class item>
+void Cha<item>::speak()
 {
-private:
-	string colorHair;
-public:
-	void setColorHair(string colorHair)
+	if (Ong<item>::getColor() == "black")
 	{
-		this->colorHair = colorHair;
+		cout << "cha cung da den" << endl;
 	}
-
-	string getColorHair()
+	else
 	{
-		return this->colorHair;
+		cout << "cha mau da khac" << endl;
 	}
+}
 
-};
+template <class item>
+void Cha<item>::setColorHair(string colorHair)
+{
+	this->colorHair = colorHair;
+}
+
+template <class item>
+string Cha<item>::getColorHair()
+{
+	return this->colorHair;
+}
+
+

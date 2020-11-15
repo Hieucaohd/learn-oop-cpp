@@ -3,22 +3,15 @@
 #include <string>
 using namespace std;
 
-typedef int keyType;
-struct item
-{
-	keyType key;
-};
 
-template <class item>
-class DlistIterator;
 
 // Dlist = Dynamic List: danh sách cấp phát động
 
-template <class item>
+
 class Dlist
 {
 public:
-	//friend class DlistIterator<item>; // công cụ iterator làm hàm bạn
+	//friend class DlistIterator<int>; // công cụ iterator làm hàm bạn
 
 	Dlist()
 	{
@@ -36,7 +29,7 @@ public:
 		Precondition: m nguyên dương
 		Postcondition: một danh sách rỗng được khởi tạo với khả năng tối đa chứa m phần tử
 		*/
-		element = new item[m];
+		element = new int[m];
 		if (element != NULL)
 		{
 			size = m;
@@ -47,7 +40,7 @@ public:
 	Dlist(const Dlist &L)
 	{
 		// Constructor - copy.
-		element = new item[L.size];
+		element = new int[L.size];
 		size = L.size;
 		last = L.last;
 		for (int k = 0; k <= last; k++)
@@ -62,7 +55,7 @@ public:
 		if (size != L.size)
 		{
 			delete [] element;
-			element = new item[L.size];
+			element = new int[L.size];
 			size = L.size;
 		}
 		last = L.last;
@@ -98,7 +91,7 @@ public:
 		return last + 1;
 	}
 
-	void insert(const item &x, int i)
+	void insert(const int &x, int i)
 	{
 		/* 
 		LƯU Ý: phần tử thứ i của danh sách (i = 1, 2, 3,...) được lưu trong thành phần element[i - 1] của mảng động.
@@ -122,7 +115,7 @@ public:
 			else 
 			// Mảng element[] đầy 
 			{
-				item *newArray = new item[2 * size + 1];
+				int *newArray = new int[2 * size + 1];
 				if (newArray != NULL)
 				{
 					for (int k = 0; k <= i - 2; k++) 
@@ -149,7 +142,7 @@ public:
 		}	
 	}
 
-	void append(const item &x)
+	void append(const int &x)
 	{
 		/* 
 		Thêm phần tử x vào đuôi danh sách.
@@ -165,7 +158,7 @@ public:
 		else
 		// Mảng element[] đầy
 		{
-			item *newArray = new item[size * 2 + 1];
+			int *newArray = new int[size * 2 + 1];
 			if (newArray != NULL)
 			{
 				for (int k = 0; k <= last; k++)
@@ -192,13 +185,13 @@ public:
 		{
 			for (int k = i - 1; k < last; k++)
 			{
-				element[k] = this.element[k + 1];
+				element[k] = element[k + 1];
 			}
 			last--;
 		}
 	}
 
-	item findElement(int i)
+	int findElement(int i)
 	{
 		/*
 		Tìm phần tử ở vị trí thứ i
@@ -230,7 +223,7 @@ public:
 		{
 			size = size + numberElements; // cấp phát thêm cho mảng số phần tử bằng chính cố phần tử cần nhập
 			delete [] element;
-			element = new item[size];
+			element = new int[size];
 			for (int k = 0; k <= last; k++)
 			{
 				fflush(stdin);
@@ -251,7 +244,7 @@ public:
 		system("pause");
 	}
 private:
-	item *element;
+	int *element;
 	int size; // kích cỡ của mảng cấp phát động element[]. 
 	int last; // số lượng phần tử có trong danh sách length() =  last + 1.
 };
