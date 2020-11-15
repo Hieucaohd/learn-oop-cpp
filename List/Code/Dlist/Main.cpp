@@ -20,6 +20,7 @@ int main(int argc, char const *argv[])
 	iterL.advance();
 	cout << "Current element now: " << iterL.currentElement().item << endl;
 	L.outputDlistElements();
+	cout << "hello world" << endl;
 	system("pause");
 	return 0;
 }
