@@ -3,7 +3,7 @@
 #include <string>
 using namespace std;
 
-typedef int typeOfItem;
+typedef string typeOfItem;
 typedef int typeOfKey;
 struct item
 {
@@ -24,7 +24,7 @@ public:
 	Dlist()
 	{
 		// Constructor: khởi tạo một mảng rỗng
-		element = NULL;
+		elements = NULL;
 		size = 0;
 		last = -1;
 	}
@@ -37,8 +37,8 @@ public:
 		Precondition: m nguyên dương
 		Postcondition: một danh sách rỗng được khởi tạo với khả năng tối đa chứa m phần tử
 		*/
-		element = new item[m];
-		if (element != NULL)
+		elements = new item[m];
+		if (elements != NULL)
 		{
 			size = m;
 			last = -1;
@@ -48,12 +48,12 @@ public:
 	Dlist(const Dlist &L)
 	{
 		// Constructor - copy.
-		element = new item[L.size];
+		elements = new item[L.size];
 		size = L.size;
 		last = L.last;
 		for (int k = 0; k <= last; k++)
 		{
-			element[k] = L.element[k];
+			elements[k] = L.elements[k];
 		}
 	}
 
@@ -62,14 +62,14 @@ public:
 		// Định nghĩa toán tử "=" để copy từ đối tượng L.
 		if (size != L.size)
 		{
-			delete [] element;
-			element = new item[L.size];
+			delete [] elements;
+			elements = new item[L.size];
 			size = L.size;
 		}
 		last = L.last;
 		for (int k = 0; k <= last; k++)
 		{
-			element[k] = L.element[k];
+			elements[k] = L.elements[k];
 		}
 		return *this;
 		
@@ -78,7 +78,65 @@ public:
 	~Dlist()
 	{
 		// Dis-constructor: thu hồi bộ nhớ được cấp phát động cho mảng.
-		delete [] element;
+		delete [] elements;
+	}
+
+	void inputElementsOfDlist(int numberElements)
+	{
+		/*
+		Nhập các phần tử cho danh sách.
+		Nếu số phần tử cần nhập lớn hơn kích thước của danh sách 
+		thì ta cấp phát một mảng mới có kích thước gấp đôi mảng cũ.
+		*/
+		last = numberElements - 1;
+		if (numberElements < size)
+		// Số phần tử cần nhập nhỏ hơn kích cỡ đã được cấp phát cho mảng elements[].
+		{
+			cout << "\n\n\t\t NHAP DANH SACH \n";
+			for (int k = 0; k <= last; k++)
+			{
+				fflush(stdin);
+				cout << "Nhap phan tu thu " << k + 1 << ": ";
+				cin >> elements[k].item;
+			}
+		}
+		else
+		// Số phần tử cần nhập lớn hơn kích cỡ đã được cấp phát cho mảng elements[].
+		{
+			size = size + numberElements; // cấp phát thêm cho mảng số phần tử bằng chính cố phần tử cần nhập
+			delete [] elements;
+			elements = new item[size];
+			for (int k = 0; k <= last; k++)
+			{
+				fflush(stdin);
+				cout << "Nhap phan tu thu " << k + 1 << ": ";
+				cin >> elements[k].item;
+			}
+		}
+	}
+
+	void outputElementsOfDlist()
+	{
+		if (!isDlistEmpty())
+		// Danh sách không rỗng
+		{
+			cout << "\n\n\t\t CAC PHAN TU CUA MANG: ";
+			for (int k = 0; k <= last; k++)
+			{
+				cout << elements[k].item << " ";
+			}
+			cout << endl;
+		}
+		else
+		// Danh sách rỗng
+		{
+			cout << "Danh sach rong" << endl;
+		}
+	}
+
+	void setKeyOfElement(const typeOfKey &key, const int &i)
+	{
+		elements[i - 1].key = key;
 	}
 
 	bool isDlistEmpty() const
@@ -102,7 +160,7 @@ public:
 	void insert(const item &x, int i)
 	{
 		/* 
-		LƯU Ý: phần tử thứ i của danh sách (i = 1, 2, 3,...) được lưu trong thành phần element[i - 1] của mảng động.
+		LƯU Ý: phần tử thứ i của danh sách (i = 1, 2, 3,...) được lưu trong thành phần elements[i - 1] của mảng động.
 		Xen phần tử x vào vị trí thứ i trong danh sách. 
 		Nếu length() >= size thì ta sẽ cấp phát động một mảng mới có kích cỡ gấp đôi mảng cũ.
 		Precondition: 1 <= i <= length().
@@ -111,17 +169,17 @@ public:
 		if (1 <= i && i <= length())
 		{
 			if (length() < size) 
-			// Mảng element[] chưa đầy
+			// Mảng elements[] chưa đầy
 			{
 				last++;
 				for (int k = last; k >= i; k--)
 				{
-					element[k] = element[k - 1];
+					elements[k] = elements[k - 1];
 				}
-				element[i - 1] = x;
+				elements[i - 1] = x;
 			}
 			else 
-			// Mảng element[] đầy 
+			// Mảng elements[] đầy 
 			{
 				item *newArray = new item[2 * size + 1];
 				if (newArray != NULL)
@@ -129,20 +187,20 @@ public:
 					for (int k = 0; k <= i - 2; k++) 
 					{
 						/* 
-						Sao chép các phần tử từ 0 -> i - 2 trong element[] sang newArray[],
+						Sao chép các phần tử từ 0 -> i - 2 trong elements[] sang newArray[],
 						đồng thời gán phần tử newArray[i - 1] = x. 
 						*/
-						newArray[k] = element[k];
+						newArray[k] = elements[k];
 					}
 					newArray[i - 1] = x;
 
 					for (int k = i; k <= last + 1; k++)					
 					{
-						// Sao chép phần tử từ i -> last trong element[] sang newArray[].
-						newArray[k] = element[k - 1];
+						// Sao chép phần tử từ i -> last trong elements[] sang newArray[].
+						newArray[k] = elements[k - 1];
 					}
-					delete [] element;
-					element = newArray;
+					delete [] elements;
+					elements = newArray;
 					last++;
 					size = 2 * size + 1;	
 				}	
@@ -158,24 +216,24 @@ public:
 		Postcondition: x là phần tử ở đuôi của danh sách
 		*/
 		if (length() < size)
-		// Mảng element[] chưa đầy
+		// Mảng elements[] chưa đầy
 		{
 			last++;
-			element[last] = x;
+			elements[last] = x;
 		}
 		else
-		// Mảng element[] đầy
+		// Mảng elements[] đầy
 		{
 			item *newArray = new item[size * 2 + 1];
 			if (newArray != NULL)
 			{
 				for (int k = 0; k <= last; k++)
 				{
-					newArray[k] = element[k];
+					newArray[k] = elements[k];
 				}
 				newArray[last + 1] = x;	// thêm x vào cuối mảng
-				delete [] element;
-				element = newArray;
+				delete [] elements;
+				elements = newArray;
 				last++;
 				size = 2 * size + 1;
 			}
@@ -185,15 +243,15 @@ public:
 	void deleteElement(int i)
 	{
 		/*
-		Loại khỏi danh sách phần tử ở vị trí i
-		Precondition: 1 <= i <= length()
-		Postcondition: phần tử ở vị trí thứ i bị loại khỏi danh sách, các phần tử từ vị trí thứ i + 1 được lùi về sau 1 vị trí
+		Loại khỏi danh sách phần tử ở vị trí i.
+		Precondition: 1 <= i <= length().
+		Postcondition: phần tử ở vị trí thứ i bị loại khỏi danh sách, các phần tử từ vị trí thứ i + 1 được lùi về sau 1 vị trí.
 		*/
 		if (1 <= i && i <= length())
 		{
 			for (int k = i - 1; k < last; k++)
 			{
-				element[k] = element[k + 1];
+				elements[k] = elements[k + 1];
 			}
 			last--;
 		}
@@ -208,69 +266,11 @@ public:
 		*/
 		if (1 <= i && i <= length())
 		{
-			return element[i - 1];
+			return elements[i - 1];
 		}
 	}
-
-	void inputDlistElements(int numberElements)
-	{
-		/*
-		Nhập các phần tử cho danh sách.
-		Nếu số phần tử cần nhập lớn hơn kích thước của danh sách 
-		thì ta cấp phát một mảng mới có kích thước gấp đôi mảng cũ.
-		*/
-		last = numberElements - 1;
-		if (numberElements < size)
-		// Số phần tử cần nhập nhỏ hơn kích cỡ đã được cấp phát cho mảng element[].
-		{
-			cout << "\n\n\t\t NHAP DANH SACH \n";
-			for (int k = 0; k <= last; k++)
-			{
-				fflush(stdin);
-				cout << "Nhap phan tu thu " << k + 1 << ": ";
-				cin >> element[k].item;
-			}
-		}
-		else
-		// Số phần tử cần nhập lớn hơn kích cỡ đã được cấp phát cho mảng element[].
-		{
-			size = size + numberElements; // cấp phát thêm cho mảng số phần tử bằng chính cố phần tử cần nhập
-			delete [] element;
-			element = new item[size];
-			for (int k = 0; k <= last; k++)
-			{
-				fflush(stdin);
-				cout << "Nhap phan tu thu " << k + 1 << ": ";
-				cin >> element[k].item;
-			}
-		}
-	}
-
-	void outputDlistElements()
-	{
-		if (!isDlistEmpty())
-		// Danh sách không rỗng
-		{
-			cout << "\n\n\t\t CAC PHAN TU CUA MANG: ";
-			for (int k = 0; k <= last; k++)
-			{
-				cout << element[k].item << " ";
-			}
-			cout << endl;
-		}
-		else
-		// Danh sách rỗng
-		{
-			cout << "Danh sach rong" << endl;
-		}
-	}
-
-	// void setKeyOfElements(const typeOfKey &key, const int &i)
-	// {
-	// 	element[i - 1].key = key;
-	// }
 private:
-	item *element;
-	int size; // kích cỡ của mảng cấp phát động element[]. 
+	item *elements;
+	int size; // kích cỡ của mảng cấp phát động elements[]. 
 	int last; // số lượng phần tử có trong danh sách length() =  last + 1.
 };
