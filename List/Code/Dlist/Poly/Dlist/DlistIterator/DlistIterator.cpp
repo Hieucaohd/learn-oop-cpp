@@ -77,4 +77,3 @@ void CDlistIterator::remove()
 		cout << "Phan tu hien thoi khong co trong danh sach." << endl;
 	}
 }
-

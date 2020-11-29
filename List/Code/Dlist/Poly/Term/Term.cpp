@@ -18,7 +18,7 @@ CTerm::~CTerm()
 
 ostream & operator << (ostream &os, CTerm &t)
 {
-	os << t.m_coef << "x^" << t.m_expo;
+	os << (double)t.m_coef << "x^" << (int)t.m_expo;
 	return os;
 }
 

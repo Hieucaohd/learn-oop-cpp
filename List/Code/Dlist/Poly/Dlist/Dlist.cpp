@@ -58,54 +58,6 @@ CDlist::~CDlist()
 	delete [] m_elements;
 }
 
-void CDlist::inputDlist(int numberElements)
-{
-	if (numberElements > m_size)
-	// Neu so phan tu can nhap lon hon kich thuoc cua mang.
-   	{
-		delete [] m_elements;
-		while(numberElements >=  m_size)
-		{
-			m_size = m_size + 1;
-		}
-		m_elements = new typeOfElement[m_size];
-		m_last = numberElements - 1;
-		for (int i = 0; i <= m_last; i++)
-		{
-			cout << "Nhap phan tu thu " << i + 1 << ": " << endl;
-			cin >> m_elements[i];	
-		}
-	}
-	else
-	// Neu so phan tu can nhap nho hon kich thuoc cua mang.
-	{
-		m_last = numberElements - 1;
-		for (int i = 0; i <= m_last; i++)
-		{
-			cout << "Nhap phan tu thu " << i + 1 << ": " << endl;
-			cin >> m_elements[i];
-		}
-	}
-}
-
-void CDlist::outputDlist()
-{
-	if(!isDlistEmpty())
-	// Neu mang khong rong.
-	{	 	   
-		for (int i = 0; i <= m_last; i++)
-		{
-			cout << m_elements[i] << endl;
-		}
-	}
-	else
-	// Neu mang rong.
-	{
-		cout << "Khong co phan tu nao!" << endl;
-	}
-	cout << endl;
-}
-
 void CDlist::insert(const typeOfElement &element_parameter, int position_insert)
 {
 	if (1 <= position_insert && position_insert <= length())
@@ -213,11 +165,6 @@ typeOfElement CDlist::findElement(int position)
 	// Neu vi tri can tim nam trong danh sach.
 	{
 	    return m_elements[position - 1];
-	}
-	else
-	// Neu vi tri can tim khong nam trong danh sach.
-	{
-		cout << "Vi tri can tim khong nam trong danh sach." << endl;
 	}
 }
 

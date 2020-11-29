@@ -34,18 +34,6 @@ public:
 	~CDlist();
 	// Dis-constructor: thu hoi bo nho duoc cap phat dong cho mang m_elements.
 
-	void inputDlist(int numberElements);
-	/*Nhap cac phan tu cho danh sach.
-	- Neu so phan tu can nhap lon hon kich thuoc hien tai cua mang
-	thi ta cap phat mang moi co kich thuoc x2 mang cu.
-	*/
-
-	void outputDlist();
-	/*In ra man hinh cac phan tu cua danh sach.
-	- Precondition: danh sach khong rong.
-	- Postcondition: xuat ra man hinh danh sach.
-	*/
-
 	bool isDlistEmpty() 
 	{
 		/*Kiem tra xem danh sach co rong khong.
