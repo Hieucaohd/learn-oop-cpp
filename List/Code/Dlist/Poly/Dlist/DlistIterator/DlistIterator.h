@@ -2,17 +2,17 @@
 #include "../Dlist.h"
 using namespace std;
 
-class CDListIterator
+class CDlistIterator
 {
 private:
-	CDList* m_Dlist_ptr; // bien con tro de quan li danh sach.
+	CDlist* m_Dlist_ptr; // bien con tro de quan li danh sach.
 	int m_current; // vi tri hien thoi.
 public:
-	CDListIterator(CDList &L);
+	CDlistIterator(CDlist &L);
 	/* Constructor kien tao.
 	 * */
 
-	~CDListIterator();
+	~CDlistIterator();
 	/* Constructor ket thuc.
 	 * */
 
@@ -21,7 +21,7 @@ public:
 	 * vi tri dau tien trong danh sach L.
 	 * */
 
-	bool valid() const
+	bool valid();
 	/* Postcondition: tra ve true neu vi tri hien thoi co 
 	 * phan tu trong danh sach, va tra ve false neu khong.
 	 * */
@@ -32,7 +32,7 @@ public:
 	 * trong danh sach.
 	 * */
 	
-	typeOfElement & current() const
+	typeOfElement & current();
 	/* Precondition: ham valid() tra ve true.
 	 * Postcondition: tra ve phan tu o vi tri hien thoi 
 	 * cua danh sach.
@@ -50,4 +50,4 @@ public:
 	 * Postcondition: phan tu hien thoi bi loai khoi danh sach
 	 * phan tu di sau no tro thanh phan tu hien thoi.
 	 * */
-}
+};

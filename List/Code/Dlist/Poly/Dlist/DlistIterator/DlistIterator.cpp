@@ -1,4 +1,4 @@
-#include "CDlistIterator.h"
+#include "DlistIterator.h"
 
 CDlistIterator::CDlistIterator(CDlist &L)
 {
@@ -16,7 +16,7 @@ void CDlistIterator::start()
 	m_current = 0;
 }
 
-bool CDlistIterator::valid(argument)
+bool CDlistIterator::valid()
 {
 	return (0 <= m_current && m_current <= m_Dlist_ptr->m_last);
 }
@@ -54,8 +54,27 @@ void CDlistIterator::add(const typeOfElement &element_parameter)
 	if (valid())
 	/* Neu phan tu hien thoi co trong danh sach.*/
 	{
-	    
+	 	m_Dlist_ptr->insert(element_parameter, m_current + 1);   
+		m_current ++;
 	}
-	
+	else
+	/* Neu phan tu hien thoi khong co trong danh sach.*/
+	{
+		cout << "Phan tu hien thoi khong co trong danh sach." << endl;
+	}
+}
+
+void CDlistIterator::remove()
+{
+	if (valid())
+	/* Neu phan tu hien thoi co trong danh sach.*/
+	{
+	    m_Dlist_ptr->deleteElement(m_current + 1);
+	}
+	else
+	/* Neu phan tu hien thoi khong co trong danh sach.*/
+	{
+		cout << "Phan tu hien thoi khong co trong danh sach." << endl;
+	}
 }
 
