@@ -282,7 +282,7 @@ public:
         return false;
     }
 
-    bool searchElementByKeyInDsetSortedUseRecursive(typeOfKey key, int bottom = 1, int top = length())
+    bool searchElementByKeyInDsetSortedUseRecursive(typeOfKey key, int bottom, int top)
     {
         if (bottom > top)
         {
