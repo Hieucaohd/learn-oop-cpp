@@ -2,6 +2,7 @@
 #include <iostream>
 #include "../Term/Term.h"
 #include "../Dlist/Dlist.h"
+#include "../Dlist/DlistIterator/DlistIterator.h"
 using namespace std;
 
 class CPoly
