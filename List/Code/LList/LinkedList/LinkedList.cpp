@@ -230,9 +230,4 @@ typeOfData CLinkedList::findElement(int position)
 
 		return cur->m_data;
 	}
-	else
-	/* Neu vi tri can tim khong nam trong danh sach.*/
-	{
-		cout << "Vi tri can tim khong nam trong danh sach." << endl;
-	}
 }

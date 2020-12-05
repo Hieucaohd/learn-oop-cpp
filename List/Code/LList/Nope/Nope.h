@@ -11,10 +11,11 @@ class CListIterator;
 typedef int typeOfData; // xac dinh kieu cua typeOfData.
 class CNope
 {
-public:
+private:
 	typeOfData m_data; // phan du lieu.
 	CNope *m_next; 
 	CNope *m_precede;
+public:
 	friend class CLinkedList;
 	/* Khai bao lop CLinkedList la lop ban.
 	 * */

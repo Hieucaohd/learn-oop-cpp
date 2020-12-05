@@ -8,9 +8,10 @@ class CListIterator;
 
 class CLinkedList
 {
-public:
+private:
 	int m_length; // do dai cua danh sach.
 	CNope *m_head; // con tro dau.
+public:
 	friend class CListIterator;
 	/* Khai bao cong cu lap.*/
 
