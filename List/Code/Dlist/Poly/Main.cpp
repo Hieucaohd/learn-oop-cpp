@@ -7,6 +7,7 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
+	system("clear");
 	CPoly p1, p2;
 	p1.inputPoly(3);
 	p1.outputPoly();
