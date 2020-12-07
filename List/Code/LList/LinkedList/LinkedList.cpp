@@ -28,6 +28,7 @@ CLinkedList::CLinkedList(const CLinkedList &L)
 		m_head = new CNope(L.m_head->m_data);
 		m_head->m_next = m_head;
 		m_head->m_precede = m_head;
+
 		m_length = 0;
 		
 
@@ -164,7 +165,6 @@ void CLinkedList::insertElement(const typeOfData &data_parameter, int position)
 	}
 }
 
-
 void CLinkedList::appendElement(const typeOfData &data_parameter)
 {
 	/* Tao mot thanh phan moi.*/
@@ -229,5 +229,10 @@ typeOfData CLinkedList::findElement(int position)
 		} // End while.
 
 		return cur->m_data;
+	}
+	else
+	/* Neu vi tri can tim khong nam trong danh sach.*/
+	{
+		cout << "Vi tri can xoa khong nam trong danh sach." << endl;
 	}
 }

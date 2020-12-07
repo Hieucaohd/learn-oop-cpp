@@ -1,5 +1,6 @@
 #include <iostream>
 #include "LinkedList/LinkedList.h"
+#include "ListIterator/ListIterator.h"
 #include "Nope/Nope.h"
 using namespace std;
 
@@ -19,18 +20,15 @@ int main(int argc, char *argv[])
 {
 	system("clear");
 	CLinkedList list1;
-	list1.appendElement(1);
-	list1.appendElement(2);
 
-	/* In ra do dai cua danh sach list1.*/
-	cout << "Do dai cua danh sach la: " << list1.length() << endl;
+	/* Them cac phan tu tu 1 den 10 vao list1.*/
+	for (int i = 1; i <= 10; i++)
+	{
+		list1.appendElement(i);
+	}
 
-	CLinkedList list2;
-	list2 = list1;
-	cout << "Do dai cua danh sach la: " << list2.length() << endl;
-	
-	printList(list2);
-
+	/* In ra danh sach list1.*/
+	printList(list1);
 	return 0;
 }
 
