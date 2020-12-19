@@ -1,38 +1,59 @@
 #include <iostream>
+#include <string>
 #include "Stack/Stack.h"
-#include "Nope/Nope.h"
-
+#include "CheckParentheses/CheckParentheses.h"
+#include "Calculate/Calculate.h"
 using namespace std;
+
+void inputArray(string *array_parameter, int size_of_array)
+{
+	/* Nhap mang array_parameter voi kich thuoc size_of_array.*/
+	for (int i = 0; i < size_of_array; i++)
+	{
+		cout << "Nhap phan tu thu "<< i << ": ";
+		cin >> array_parameter[i];
+	}
+}
+
+void outputArray(string *array_parameter, int size_of_array)
+{
+	/* Xuat ra man hinh cac phan tu cua mang array_parameter
+	 * voi kich thuoc size_of_array.
+	 * */
+	cout << "Mang: ";	
+	for (int i = 0; i < size_of_array; i++)
+	{
+		cout << array_parameter[i] << " ";
+	}
+
+	cout << endl;
+}
 
 int main(int argc, char *argv[])
 {
-	system("clear");
-	CStack stack1;
-	stack1.push(1);
-	cout << stack1.pop() << endl;
+	int size_of_array;
+	cout << "Nhap kich thuoc cua mang array: "; cin >> size_of_array;
+	string *array = new string[size_of_array];
 
-	if (stack1.isStackEmpty())
-	/* Neu ngan xep rong.*/
+	/* Nhap mang: */
+	inputArray(array, size_of_array);
+
+	/* Xuat mang: */
+	outputArray(array, size_of_array);
+
+	/* Kiem tra dau ngoac.*/
+	if (checkParentheses(array, size_of_array))
+	/* Neu dau ngoac thoa man.*/
 	{
-	    cout << "Rong." << endl;
+	    cout << "Hop le." << endl;
 	}
 	else
-	/*comment*/
+	/* Neu dau ngoac khong thoa man.*/
 	{
-		cout << "Khong rong." << endl;
+		cout << "Khong hop le." << endl;
 	}
 	
-	stack1.push(2);
-	cout << stack1.getTop() << endl;
-	if (stack1.isStackEmpty())
-	/* Neu ngan xep rong.*/
-	{
-	    cout << "Rong." << endl;
-	}
-	else
-	/*comment*/
-	{
-		cout << "Khong rong." << endl;
-	}
+
+	delete [] array;
 	return 0;
 }

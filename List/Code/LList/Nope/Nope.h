@@ -8,7 +8,7 @@ class CLinkedList;
 /* Khai bao truoc cong cu lap.*/
 class CListIterator;
 
-typedef int typeOfData; // xac dinh kieu cua typeOfData.
+typedef string typeOfData; // xac dinh kieu cua typeOfData.
 class CNope
 {
 private:

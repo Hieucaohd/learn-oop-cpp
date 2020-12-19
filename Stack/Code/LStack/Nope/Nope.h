@@ -2,10 +2,12 @@
 #include <iostream>
 using namespace std;
 
+// xac dinh kieu cua typeOfData.
+typedef string typeOfData; 
+
 /* Khai bao truoc lop ngan xep.*/
 class CStack;
 
-typedef int typeOfData; // xac dinh kieu cua typeOfData.
 class CNope
 {
 private:
