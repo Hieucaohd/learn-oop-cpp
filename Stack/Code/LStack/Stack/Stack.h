@@ -3,6 +3,8 @@
 #include "../Nope/Nope.h"
 using namespace std;
 
+/* Ngan xep nay su dung danh sach lien ket don.
+ * Ta se them cac phan tu vao dau danh sach lien ket.*/
 class CStack
 {
 private:
@@ -36,15 +38,15 @@ public:
 	 * */
 
 	typeOfData pop();
-	/* Xoa phan tu o dinh cua ngan xep, dong thoi lap ra 
+	/* Xoa phan tu o dinh cua ngan xep, dong thoi tra ve 
 	 * phan tu dinh.
 	 * Precondition: ham isStackEmpty() tra ve false.
 	 * Postcondition: phan tu o dinh vi loai khoi ngan xep
 	 * va tra ve phan tu do.
 	 * */
 
-	typeOfData  getTop();
-	/* Lay ra phan tu o dinh cua ngan xep.
+	typeOfData getTop();
+	/* Tra ve gia tri cua phan tu o dinh cua ngan xep.
 	 * Precondition: ham isStackEmpty() tra ve false.
 	 * Postcondition: tra ve phan tu o dinh cua ngan xep.
 	 * */

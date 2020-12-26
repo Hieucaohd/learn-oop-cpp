@@ -17,7 +17,7 @@ bool checkParentheses(string *array, int size_of_array)
 			if (array[i] == "(")
 			/* Neu gap dau mo ngoac.*/
 			{
-				stack1.push("(");
+				stack1.push("("); // them dau mo ngoac "(" vao ngan xep.
 			}
 			else if (array[i] == ")")
 			/* Neu gap dau dong ngoac.*/
@@ -30,7 +30,7 @@ bool checkParentheses(string *array, int size_of_array)
 				else
 				/* Neu ngan xep khong rong.*/
 				{
-					stack1.pop();
+					stack1.pop(); // bo mot dau mo ngoac "(" trong ngan xep ra.
 				}
 			}
 		}

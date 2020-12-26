@@ -67,11 +67,6 @@ typeOfData CStack::pop()
 		delete old_top; // Giai phong bo nho.
 		return data_from_top;
 	}
-	else
-	/* Neu ngan xep rong.*/
-	{
-		cout << "Ngan xep rong." << endl;
-	}
 }
 
 typeOfData CStack::getTop()
@@ -80,10 +75,5 @@ typeOfData CStack::getTop()
 	/* Neu ngan xep khong rong.*/
 	{
 	    return m_top->m_data;
-	}
-	else
-	/* Neu ngan xep rong.*/
-	{
-		cout << "Ngan xep rong." << endl;
 	}
 }

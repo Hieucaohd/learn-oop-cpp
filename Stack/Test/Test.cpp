@@ -1,27 +1,12 @@
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 
 int main(int argc, char *argv[])
 {
-	string a;
-	a = "hieu";
-	switch (a)
-	{
-		case "hieu":
-			cout << "bang hieu" << endl;
-			break;
-	
-		case "phuong":
-			cout << "bang phuong" << endl;
-			break;
-		
-		case "huy":
-			cout << "bang huy" << endl;
-			break;
-		
-		default:
-			cout << "khong bang gi ca." << endl;
-	}
+	vector<int> int_vector;
+	int_vector.push_back(2);
+	cout << int_vector[0] << endl;
 	return 0;
 }
