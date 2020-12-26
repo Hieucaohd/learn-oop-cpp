@@ -1,9 +1,30 @@
 #pragma once
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <vector>
 #include "../Stack/Stack.h"
 using namespace std;
+
+int convertStringNumberToIntNumber(char number);
+/* Chuyen chu so o dang string thanh chu so o dang int.
+ * Postcondition: tra ve dang int cua chu so.
+ * */
+
+int pow(int base, int exponent);
+/* Ham lay mu.
+ * Postcondition: tra ve gia tri cua base^exponent.
+ * */
+
+int toInt(string string_number);
+/* Chuyen so o dang string thanh so o dang int.
+ * Postcondition: tra ve so o dang int.
+ * */
+
+string toString(int number);
+/* Chuyen mot so o dang int sang dang string.
+ * Postcondition: tra ve so o dang string.
+ * */
 
 void outputInfix(string *infix, int number_of_elements);
 /* Postcondition: xuat ra man hinh bieu thuc infix.
@@ -33,6 +54,6 @@ vector<string> changeInfixToPostfix(string *infix, int number_of_elements);
 /* Chuyen bieu thuc infix thanh bieu thuc postfix.
  * */
 
-int calculate(string *array, int size_of_array);
-/* Tinh bieu thuc postfix.
+int calculatePostfix(vector<string> postfix);
+/* Tinh gia tri bieu thuc postfix.
  * */

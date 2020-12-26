@@ -91,6 +91,10 @@ void infixAndPostfix()
 
 	/* In ra bieu thuc postfix: */
 	outputPostfix(postfix);
+
+	/* Tinh gia tri cua bieu thuc postfix.*/
+	int result = calculatePostfix(postfix);
+	cout << "Gia tri cua bieu thuc postfix la: " << result << endl;
 }
 
 int main(int argc, char *argv[])

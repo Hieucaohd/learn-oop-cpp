@@ -1,12 +1,17 @@
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <vector>
 using namespace std;
 
+
 int main(int argc, char *argv[])
 {
-	vector<int> int_vector;
-	int_vector.push_back(2);
-	cout << int_vector[0] << endl;
+	int number = 123;
+    string result;
+    ostringstream convert;
+    convert << number;
+    result = convert.str();
+    cout << result;
 	return 0;
 }
