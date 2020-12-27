@@ -11,6 +11,11 @@ int convertStringNumberToIntNumber(char number);
  * Postcondition: tra ve dang int cua chu so.
  * */
 
+string convertIntNumberToStringNumber(int number);
+/* Chuyen chu so o dang int sang chu so o dang string.
+ * Postcondition: tra ve chu so o dang string.
+ * */
+
 int pow(int base, int exponent);
 /* Ham lay mu.
  * Postcondition: tra ve gia tri cua base^exponent.
