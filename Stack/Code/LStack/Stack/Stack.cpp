@@ -12,16 +12,27 @@ CStack::CStack(const CStack &S)
 
 CStack::~CStack()
 {
-	/* Thu hoi tung thanh phan.*/
-	while (m_top != NULL)
-	/* Duyet qua tat ca thanh phan trong ngan xep
-	 * cho den khi top == NULL.
-	 * */
+	if (isStackEmpty())
+	/* Neu ngan xep rong.*/
 	{
-		CNope *old_top = m_top;
-		m_top = m_top->m_next;
-		delete old_top;
-	} // End while.
+	    /* Thi khong lam gi ca.*/
+	}
+	else
+	/* Neu ngan xep khong rong.*/
+	{
+		/* Thu hoi tung thanh phan.*/
+		while (m_top->m_next != NULL)
+		/* Duyet qua tat ca thanh phan trong ngan xep
+		 * cho den khi ngan xep con lai 1 phan tu.
+		 * */
+		{
+			CNope *old_top = m_top;
+			m_top = m_top->m_next;
+			delete old_top;
+		} // End while.
+
+		delete m_top;
+	}
 }
 
 CStack CStack::operator = (const CStack &S)
