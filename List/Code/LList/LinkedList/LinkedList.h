@@ -6,6 +6,7 @@ using namespace std;
 /* Khai bao truoc cong cu lap.*/
 class CListIterator;
 
+/* Cai dat boi danh sach lien ket kep, vong tron, dau gia.*/
 class CLinkedList
 {
 private:

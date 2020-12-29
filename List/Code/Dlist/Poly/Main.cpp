@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Dlist/Dlist.h"
 #include "Term/Term.h"
-#include "Dlist/DlistIterator/DlistIterator.h"
+#include "DlistIterator/DlistIterator.h"
 #include "Poly/Poly.h"
 using namespace std;
 

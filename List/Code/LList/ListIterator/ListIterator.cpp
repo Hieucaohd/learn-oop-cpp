@@ -3,7 +3,7 @@
 CListIterator::CListIterator(CLinkedList &L)
 {
 	m_List_ptr = &L;
-	m_current = L.m_head;
+	m_current = m_List_ptr->m_head;
 }
 
 CListIterator::~CListIterator()
@@ -22,13 +22,6 @@ void CListIterator::advance()
 	 * trong danh sach.
 	 * */
 	m_current = m_current->m_next;
-
-	if (m_current == m_List_ptr->m_head)
-	/* Neu vi tri hien thoi la cuoi danh sach.*/
-	{
-	    /* Thi vi tri tiep theo la o dau danh sach.*/
-		m_current = m_current->m_next;
-	}
 }
 
 bool CListIterator::valid()
@@ -46,7 +39,8 @@ typeOfData CListIterator::current()
 	else
 	/* Neu vi tri hien thoi khong trong danh sach.*/
 	{
-		cout << "Vi tri hien thoi khong trong danh sach." << endl;
+		typeOfData null_return;
+		return null_return;
 	}
 }
 
@@ -97,9 +91,3 @@ void CListIterator::remove()
 		cout << "Vi tri hien thoi khong nam trong danh sach." << endl;
 	}
 }
-
-
-
-
-
-

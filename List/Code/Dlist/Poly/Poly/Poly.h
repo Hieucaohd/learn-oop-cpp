@@ -2,7 +2,7 @@
 #include <iostream>
 #include "../Term/Term.h"
 #include "../Dlist/Dlist.h"
-#include "../Dlist/DlistIterator/DlistIterator.h"
+#include "../DlistIterator/DlistIterator.h"
 using namespace std;
 
 class CPoly
@@ -15,11 +15,12 @@ public:
 	 * */
 
 	~CPoly();
-	/* Constructor huy.
+	/* Destructor.
 	 * */
 
 	void inputPoly(int number_Terms);
 	/* Phuong thuc nhap da thuc.
+	 * number_Terms: bac cua da thuc.
 	 * Precondition: number_Terms nguyen duong.
 	 * */
 

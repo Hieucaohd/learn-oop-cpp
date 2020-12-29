@@ -4,6 +4,8 @@
 #include "../Nope/Nope.h"
 using namespace std;
 
+/* NOTE: phai them cac phan tu du lieu trong danh sach 
+ * truoc khi khoi tai iterator cho danh sach do.*/
 class CListIterator
 {
 private:
@@ -52,5 +54,3 @@ public:
 	 * phan tu di sau no tro thanh phan tu hien thoi.
 	 * */
 };
-
-

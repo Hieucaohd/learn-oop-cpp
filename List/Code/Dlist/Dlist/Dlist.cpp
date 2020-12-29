@@ -5,17 +5,18 @@ using namespace std;
 
 typedef string typeOfItem;
 typedef int typeOfKey;
+
 struct item
 {
 	typeOfKey key;
 	typeOfItem item;
 };
 
+// Khai bao truoc lop cong cu lap.
 class DlistIterator;
 
+// Lop danh sach duoc cai dat boi mang dong.
 // Dlist = Dynamic List: danh sách cấp phát động
-
-
 class Dlist
 {
 public:

@@ -233,6 +233,7 @@ typeOfData CLinkedList::findElement(int position)
 	else
 	/* Neu vi tri can tim khong nam trong danh sach.*/
 	{
-		cout << "Vi tri can xoa khong nam trong danh sach." << endl;
+		typeOfData null_return;
+		return null_return;
 	}
 }

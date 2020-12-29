@@ -1,6 +1,6 @@
 #include "Term.h"
 
-CTerm::CTerm(double coef_parameter = 0, int expo_parameter = 0)
+CTerm::CTerm(double coef_parameter, int expo_parameter)
 {
 	m_coef = coef_parameter;
 	m_expo = expo_parameter;

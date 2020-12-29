@@ -131,4 +131,3 @@ CPoly CPoly::operator + (const CPoly &poly_parameter)
 	
 	return poly_result;
 }
-

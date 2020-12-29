@@ -1,4 +1,4 @@
-output: Main.o LinkedList.o ListIterator.o Nope.o
+build_Main: Main.o LinkedList.o ListIterator.o Nope.o
 	g++ Main.o LinkedList.o ListIterator.o Nope.o -o Main
 
 Main.o: Main.cpp

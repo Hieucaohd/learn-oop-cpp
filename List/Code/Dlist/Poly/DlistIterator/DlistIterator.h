@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include "../Dlist.h"
+#include "../Dlist/Dlist.h"
 using namespace std;
 
 class CDlistIterator

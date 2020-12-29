@@ -42,7 +42,7 @@ public:
     {
         if (valid())
         {
-            return LPtr->element[current];
+            return LPtr->elements[current];
         }
     }
 
@@ -60,9 +60,9 @@ public:
                 LPtr->last++;
                 for (int k = LPtr->last; k > current; k--)
                 {
-                    LPtr->element[k] = LPtr->element[k - 1];
+                    LPtr->elements[k] = LPtr->elements[k - 1];
                 }
-                LPtr->element[current] = x;
+                LPtr->elements[current] = x;
                 current++;
             }
             else
@@ -74,18 +74,18 @@ public:
                     for (int k = 0; k <= current - 1; k++)
                     {
                         // Sao chép các phần từ từ 0 -> current + 1 của element sang newArray
-                        newArray[k] = LPtr->element[k];
+                        newArray[k] = LPtr->elements[k];
                     }
                     newArray[current] = x; // chèn x vào vị trí hiện thời
                     
                     for (int k = current + 1; k <= LPtr->last + 1; k++)
                     {
                         // sao chép các phần tử từ current -> last của element sang newArray
-                        newArray[k] = LPtr->element[k - 1];
+                        newArray[k] = LPtr->elements[k - 1];
                     }
 
-                    delete [] LPtr->element;
-                    LPtr->element = newArray;
+                    delete [] LPtr->elements;
+                    LPtr->elements = newArray;
                     LPtr->last++;
                     LPtr->size = LPtr->size * 2 + 1;
                 }
@@ -105,7 +105,7 @@ public:
             for (int k = current; k <= LPtr->last - 1; k++)
             {
                 // Các phần tử đi đứng sau phần tử hiện thời lùi về sau
-                LPtr->element[k] = LPtr->element[k + 1];
+                LPtr->elements[k] = LPtr->elements[k + 1];
             }
         }
     }

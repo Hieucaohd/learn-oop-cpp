@@ -7,7 +7,7 @@ using namespace std;
 class CQueue
 {
 private:
-	CNope *tail;
+	CNope *m_tail;
 public:
 	CQueue();
 	/* Constructor: khoi tao mot hang doi rong.
@@ -38,12 +38,14 @@ public:
 	typeOfData deQueue();
 	/* Lay ra phan tu o dau hang doi, dong thoi 
 	 * tra ve gia tri cua phan tu do
+	 * Precondition: hang doi khong rong.
 	 * Postcondition: xoa phan tu o dau hang doi,
 	 * tra ve gia tri cua phan tu do.
 	 * */
 	
 	typeOfData getHead();
 	/* Tra ve phan tu o dau hang doi.
+	 * Precondition: hang doi khong rong.
 	 * Postcondition: tra ve gia tri cua phan tu o dau hang doi
 	 * ma khong lam thay doi hang doi.
 	 * */
