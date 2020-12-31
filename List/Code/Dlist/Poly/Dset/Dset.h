@@ -1,19 +1,16 @@
 #pragma once
-#include "../Dlist.cpp"
+#include "../Dlist/Dlist.h"
 
-class Dset: public Dlist
+class Dset: public CDlist
 {
 public:
-    Dset(int m): Dlist(m)
-    {
-        // Constructor: khởi tạo tập rỗng, có thể chứa nhiều nhất là m phần tử.
-    }
+    Dset(int m): CDlist(m)
+    /* Constructor: khởi tạo tập rỗng, có thể chứa nhiều nhất là m phần tử.
+	 * */
 
-    bool isDsetEmpty()
-    {
-        // Kiểm tra xem tập có rỗng không.
-        isDlistEmpty();
-    }
+    bool isDsetEmpty();
+    /* Kiểm tra xem tập có rỗng không.
+	 * */
 
     void DsetAppend(const item &x)
     {

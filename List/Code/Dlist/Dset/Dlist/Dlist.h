@@ -9,7 +9,7 @@ typedef int typeOfKey;
 struct item
 {
 	typeOfKey key;
-	typeOfItem item;
+	typeOfItem data;
 };
 
 // Khai bao truoc lop cong cu lap.

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "LinkedList/LinkedList.h"
 #include "ListIterator/ListIterator.h"
 #include "Nope/Nope.h"

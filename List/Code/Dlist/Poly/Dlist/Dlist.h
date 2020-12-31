@@ -24,7 +24,7 @@ public:
 	 * */
 
 	CDlist(int size_parameter);
-	/* Constructor: mot mang rong cac doi tuong duoc cap phat dong.
+	/* Constructor: mot mang rong elements cac doi tuong duoc cap phat dong.
 	 * Precondition: size_parameter nguyen duong.
 	 * Postcondition: mot danh sach rong duoc khoi tao, 
 	 * voi kha nang chua toi da size_parameter phan tu.
