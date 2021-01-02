@@ -9,11 +9,16 @@ using namespace std;
 class CDynamicSet
 {
 private:
+public:
 	CNope *m_root;
 
 	/* Cac ham an phuc vu cho viec cai dat ham public.*/
 
-	void copyTree(CNope * &new_root_ptr, CNope * old_root_ptr);
+	void copyInformationFromOldToNew(CNope * &new_root_ptr, const CNope * old_root_ptr);
+	/* Lay du lieu tu dinh cu sang dinh moi.
+	 * */
+
+	void copyTree(CNope * &to_root_ptr, const CNope * from_root_ptr);
 	/* Copy tu cay tro boi old_root_ptr sang cay tro boi new_root_ptr.
 	 * */
 
@@ -46,7 +51,10 @@ private:
 	/* Tra ve du lieu co khoa lon nhat tren cay co goc tro boi root_ptr.
 	 * */
 
-public:
+	void preorder(CNope * &root_ptr);
+	/* Ham duyet cay truoc.
+	 * */
+	
 	CDynamicSet();
 	/* Constructor: khoi tao mot tap rong.
 	 * */
@@ -100,4 +108,9 @@ public:
 	/* Precondition: cay khong rong.
 	 * Postcondition: tra ve du lieu co khoa lon nhat trong tap.
 	 * */
+
+	void preorder();
+	/* Ham duyet cay truoc.
+	 * */
+	
 };

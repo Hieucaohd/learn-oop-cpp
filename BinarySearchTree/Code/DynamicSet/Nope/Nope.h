@@ -13,11 +13,11 @@ typedef int typeOfKey;
 class CNope
 {
 private:
+public:
 	typeOfData m_data;
 	typeOfKey m_key;
 	CNope *m_left;
 	CNope *m_right;
-public:
 	friend class CDynamicSet; // Khai bao lop ban.
 
 	CNope(const typeOfData & data_parameter, const typeOfKey & key_parameter);

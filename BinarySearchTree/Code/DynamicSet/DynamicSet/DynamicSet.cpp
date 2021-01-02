@@ -12,28 +12,36 @@ CDynamicSet::CDynamicSet(const CDynamicSet & set)
 	*this = set;
 }
 
-CDynamicSet CDynamicSet::operator = (const CDynamicSet & set)
+CDynamicSet CDynamicSet::operator = (const CDynamicSet &set)
 {
-	if (this != &set) // CHUA HOAN THIEN. 
-	/* Neu 2 tap khac nhau.*/
+	if (!isSetEmpty())
+	/* Neu tap cu khong rong.*/
 	{
-		/* Xoa bo tap cu.*/
-	    makeEmpty(m_root);
+	    /* Thi ta phai xoa tap cu di.*/
+		makeEmpty(m_root);
 
-		if (set.m_root != NULL)
-		/* Neu tap set khong rong.*/
-		{
-		    /* Thi ta copy tu tap set sang.*/
-			copyTree(m_root, set.m_root);
-		}
+		/* Sau do copy tu tap set sang.*/
+		copyTree(m_root, set.m_root);
 	}
 
 	return *this;
 }
 
-void CDynamicSet::copyTree(CNope * &new_root_ptr, CNope * old_root_ptr)
+void CDynamicSet::copyInformationFromOldToNew(CNope * &to_root_ptr, const CNope * from_root_ptr)
 {
-	
+	to_root_ptr->m_data = from_root_ptr->m_data;
+	to_root_ptr->m_key = from_root_ptr->m_key;
+}
+
+void CDynamicSet::copyTree(CNope * &to_root_ptr, const CNope * from_root_ptr)
+{
+	if (from_root_ptr != NULL)
+	/* Neu cay bi sao chep khong rong.*/
+	{
+		insert(from_root_ptr->m_data, from_root_ptr->m_key, to_root_ptr);
+		copyTree(to_root_ptr, from_root_ptr->m_left);
+		copyTree(to_root_ptr, from_root_ptr->m_right);
+	}
 }
 
 /* Destructor.*/
@@ -95,7 +103,6 @@ void CDynamicSet::deleteElementByKey(const typeOfKey & key)
 
 void CDynamicSet::deleteElementByKey(const typeOfKey & key, CNope * &root_ptr)
 {
-	/* Gia su khoa can xoa luon ton tai trong tap.*/
 	if (key < root_ptr->m_key)
 	/* Neu khoa can xoa nho hon khoa o dinh.*/
 	{
@@ -152,9 +159,13 @@ CNope * CDynamicSet::deleteMin(CNope * &root_ptr)
 	} // End while.
 
 	CNope *take_element = new CNope(root_ptr->m_data, root_ptr->m_key); // lay du lieu.
+
 	CNope *old_left = root_ptr; // dinh vi con tro cu.
+
 	root_ptr = root_ptr->m_right; // noi voi cay con phai.
+
 	delete old_left; // thu hoi bo nho.
+
 	return take_element;
 }
 
@@ -228,3 +239,16 @@ typeOfData CDynamicSet::max(CNope * &root_ptr)
 
 	return root_ptr->m_data;
 }
+
+/* Ham duyet cay.*/
+void CDynamicSet::preorder()
+{
+	preorder(m_root);
+}
+
+void CDynamicSet::preorder(CNope * &root_ptr)
+{
+	
+}
+
+
