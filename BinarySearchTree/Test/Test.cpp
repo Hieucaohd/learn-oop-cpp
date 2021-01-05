@@ -6,13 +6,23 @@ int main(int argc, char *argv[])
 	int *a;
 	int c = 3;
 	a = &c;
-	int b = 2;
-	*a = b;
+	cout << "Gia tri cua a la: " << *a << endl;
+	cout << endl;
 
-	*a = 4;
-	b = 6;
-	cout << *a << endl;
-	cout << c << endl;
-	cout << "Gia tri cua b la: " << b << endl;
+	int *b;
+	int e = 4;
+	b = &e;
+	cout << "Gia tri cua b la: " << *b << endl;
+	cout << endl;
+
+	*a = *b;
+	cout << "Gia tri cua a la: " << *a << endl;
+	cout << "Gia tri cua b la: " << *b << endl;
+	cout << endl;
+
+	*a = 100;
+	cout << "Gia tri cua a la: " << *a << endl;
+	cout << "Gia tri cua b la: " << *b << endl;
+	cout << endl;
 	return 0;
 }

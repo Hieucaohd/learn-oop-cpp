@@ -1,6 +1,20 @@
 #include "DynamicSet.h"
 
 /* Constructor.*/
+void copyTree(const CNope * from_root_ptr, CNope * &to_root_ptr)
+{
+	if (from_root_ptr != NULL)
+	{
+		to_root_ptr = new CNope(from_root_ptr->m_data, from_root_ptr->m_key);
+		copyTree(from_root_ptr->m_left, to_root_ptr->m_left);
+		copyTree(from_root_ptr->m_right, to_root_ptr->m_right);
+	}
+	else
+	{
+		return;
+	}
+}
+
 CDynamicSet::CDynamicSet()
 {
 	m_root = NULL;
@@ -9,39 +23,26 @@ CDynamicSet::CDynamicSet()
 CDynamicSet::CDynamicSet(const CDynamicSet & set)
 {
 	m_root = NULL;
-	*this = set;
+	copyTree(set.m_root, this->m_root);
 }
 
-CDynamicSet CDynamicSet::operator = (const CDynamicSet &set)
+CDynamicSet::CDynamicSet(const CDynamicSet * set_ptr)
+{
+	m_root = NULL;
+	copyTree(set_ptr->m_root, this->m_root);
+}
+
+CDynamicSet CDynamicSet::operator = (const CDynamicSet & set)
 {
 	if (!isSetEmpty())
 	/* Neu tap cu khong rong.*/
 	{
 	    /* Thi ta phai xoa tap cu di.*/
 		makeEmpty(m_root);
-
-		/* Sau do copy tu tap set sang.*/
-		copyTree(m_root, set.m_root);
 	}
 
+	copyTree(set.m_root, this->m_root);
 	return *this;
-}
-
-void CDynamicSet::copyInformationFromOldToNew(CNope * &to_root_ptr, const CNope * from_root_ptr)
-{
-	to_root_ptr->m_data = from_root_ptr->m_data;
-	to_root_ptr->m_key = from_root_ptr->m_key;
-}
-
-void CDynamicSet::copyTree(CNope * &to_root_ptr, const CNope * from_root_ptr)
-{
-	if (from_root_ptr != NULL)
-	/* Neu cay bi sao chep khong rong.*/
-	{
-		insert(from_root_ptr->m_data, from_root_ptr->m_key, to_root_ptr);
-		copyTree(to_root_ptr, from_root_ptr->m_left);
-		copyTree(to_root_ptr, from_root_ptr->m_right);
-	}
 }
 
 /* Destructor.*/
@@ -239,16 +240,3 @@ typeOfData CDynamicSet::max(CNope * &root_ptr)
 
 	return root_ptr->m_data;
 }
-
-/* Ham duyet cay.*/
-void CDynamicSet::preorder()
-{
-	preorder(m_root);
-}
-
-void CDynamicSet::preorder(CNope * &root_ptr)
-{
-	
-}
-
-
