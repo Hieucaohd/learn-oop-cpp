@@ -198,7 +198,7 @@ void CLinkedList::deleteElement(int position)
 			count += 1;
 		} // End while.
 
-		/* Xoa*/
+		/* Xoa.*/
 		cur->m_precede->m_next = cur->m_next;
 		cur->m_next->m_precede = cur->m_precede;
 
@@ -233,6 +233,7 @@ typeOfData CLinkedList::findElement(int position)
 	else
 	/* Neu vi tri can tim khong nam trong danh sach.*/
 	{
+		cout << "Khong tim thay phan tu: ";
 		typeOfData null_return;
 		return null_return;
 	}

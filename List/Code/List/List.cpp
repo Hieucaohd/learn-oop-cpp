@@ -70,7 +70,7 @@ public:
 		
 	}
 
-	void delete(int i)
+	void deleteElement(int i)
 	{
 		// Loại khỏi danh sách phần tử ở vị trí i
 		// Precondition: 1 <= i <= length()
@@ -124,7 +124,7 @@ public:
 		
 	}
 
-	item current() const
+	item functionCurrent() const
 	{
 		// Precondition: hàm valid() trả về true
 		// Postcondition: trả về phần tử hiện thời của danh sách
