@@ -8,8 +8,9 @@ using namespace std;
 
 class CDictionary
 {
-public:
 private:
+public:
+	void hieu();
 	const int static SIZE = 811; // kich co cua mang.
 
 	CDictionary();
@@ -30,7 +31,7 @@ private:
 
 	/* Cac phep toan tu dien: */
 
-	bool search(const typeOfKey & key, typeOfData & data);
+	bool search(const typeOfKey & key, typeOfData & take_data);
 	/* Tim kiem du lieu co khoa la key.
 	 * Luu du lieu vao bien data.
 	 * Postcondition: tra ve true neu tim thay,

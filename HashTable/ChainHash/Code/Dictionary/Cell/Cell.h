@@ -17,10 +17,12 @@ typedef int typeOfData;
 class CCell
 {
 private:
+public:
 	typeOfData m_data;
 	typeOfKey m_key;
 	CCell *m_next;
-public:
+	friend class CDictionary; // khai bao lop ban.
+
 	CCell();
 	/* Contructor: rong.
 	 * */

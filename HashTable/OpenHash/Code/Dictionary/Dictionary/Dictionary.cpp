@@ -15,14 +15,14 @@ CDictionary::~CDictionary()
 	delete [] m_array_datas;
 }
 
-bool CDictionary::search(typeOfKey & key, typeOfData & data)
+bool CDictionary::search(typeOfKey & key, typeOfData & take_data)
 {
 	int index_ACTIVE, index_EMPTY_DELETED;
 	if (find(key, index_ACTIVE, index_EMPTY_DELETED))
 	/* Neu tim thay.*/
 	{
 	    /* Thi lay du lieu ra va ket thuc.*/
-		data = m_array_datas[index_ACTIVE].m_data;
+		take_data = m_array_datas[index_ACTIVE].m_data;
 		return true;
 	}
 	else
