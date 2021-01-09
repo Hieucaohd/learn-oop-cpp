@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
 	typeOfKey key;
 
 	dic->insert(data = 100, key = 3, is_success);
+	dic->insert(data = 300, key = 814, is_success);
 	if (is_success)
 	/* Neu them thanh cong.*/
 	{
@@ -21,7 +22,7 @@ int main(int argc, char *argv[])
 
 	dic->deleteElementByKey(key = 3);
 
-	if (dic->search(key = 3, data))
+	if (dic->search(key = 814, data))
 	{
 	    cout << "Tim thay va gia tri la: " << data << endl;
 	}
