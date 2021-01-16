@@ -102,15 +102,15 @@ CPriorityQueue::~CPriorityQueue()
 	delete [] m_array_datas;
 }
 
-typeOfData CPriorityQueue::findMin()
+CNope CPriorityQueue::findMin()
 {
-	return m_array_datas[0].m_data;
+	return m_array_datas[0];
 }
 
-typeOfData CPriorityQueue::deleteMin()
+CNope CPriorityQueue::deleteMin()
 {
 	/* Lay du lieu.*/
-	typeOfData take_data = m_array_datas[0].m_data;
+	CNope take_nope = m_array_datas[0];
 
 	/* Thay the phan tu o goc bang phan tu o muc thap nhat va o ngoai cung ben phai.*/
 	m_array_datas[0] = m_array_datas[m_last]; 
@@ -121,7 +121,7 @@ typeOfData CPriorityQueue::deleteMin()
 	/* Sau do dua phan tu o goc xuong vi tri thich hop.*/
 	shiftDown(0);
 
-	return take_data;
+	return take_nope;
 }
 
 int findParent(const int &child_index)
@@ -170,7 +170,7 @@ void CPriorityQueue::upSizeArray()
 	}
 }
 
-void CPriorityQueue::insert(const typeOfData &data_parameter, const typeOfPriority &priority_parameter, bool &is_success)
+void CPriorityQueue::insert(const typeOfData &data_parameter, const typeOfPriority &priority_parameter)
 {
 	/* Trong truong hop mang da day thi ta
 	 * tang kich thuoc cua mang len.*/
@@ -184,7 +184,6 @@ void CPriorityQueue::insert(const typeOfData &data_parameter, const typeOfPriori
 
 	/* Dau tien, them phan tu moi vao muc thap nhat, ngoai cung ben phai.*/
 	m_array_datas[m_last] = new_nope;
-	is_success = true;
 
 	/* Sau do, dua phan tu moi len vi tri thich hop.*/
 	int child = m_last; // bien child luu lai chi so cua con.
@@ -193,14 +192,6 @@ void CPriorityQueue::insert(const typeOfData &data_parameter, const typeOfPriori
 	while (child > 0)
 	/* Neu con van co cha.*/
 	{
-		if (m_array_datas[child].m_priority == m_array_datas[parent].m_priority)
-		/* Neu gia tri uu tien cua con bang cua cha.*/
-		{
-		    /* Thi bien is_success = false va ket thuc vong lap.*/
-			is_success = false;
-			break;
-		}
-
 		if (m_array_datas[child].m_priority < m_array_datas[parent].m_priority)
 		/* Kiem tra xem gia tri uu tien cua con co nho hon cua cha khong.*/
 		{

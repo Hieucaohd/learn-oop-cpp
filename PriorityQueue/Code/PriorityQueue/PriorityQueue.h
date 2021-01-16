@@ -51,15 +51,15 @@ public:
 	/* Destructor.
 	 * */
 
-	typeOfData findMin();
+	CNope findMin();
 	/* Tra ve phan tu co gia tri uu tien nho nhat.
 	 * */
 	
-	typeOfData deleteMin();
+	CNope deleteMin();
 	/* Loai va tra ve phan tu co gia tri uu tien nho nhat.
 	 * */
 	
-	void insert(const typeOfData &data_parameter, const typeOfPriority &priority_parameter, bool &is_success);
+	void insert(const typeOfData &data_parameter, const typeOfPriority &priority_parameter);
 	/* Them phan tu vao hang uu tien, neu thanh cong thi is_success nhan gia tri true,
 	 * neu khong thanh cong thi is_success nhan gia tri false.
 	 * */

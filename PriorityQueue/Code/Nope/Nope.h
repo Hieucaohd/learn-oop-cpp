@@ -17,6 +17,8 @@ class CNope
 private:
 	typeOfData m_data; // bien luu lai du lieu cua phan tu.
 	typeOfPriority m_priority; // bien luu lai gia tri uu tien cua phan tu.
+	CNope *m_left;
+	CNope *m_right;
 public:
 	friend class CPriorityQueue; // khai bao lop ban.
 
