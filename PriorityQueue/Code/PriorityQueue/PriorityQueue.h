@@ -7,7 +7,7 @@
 
 using namespace std;
 
-/* Gia thiet rang gia tri uu tien cua cac phan tu phai khac nhau.*/
+/* Gia thiet rang gia tri uu tien cua cac phan tu co the bang nhau.*/
 class CPriorityQueue
 {
 private:
@@ -60,12 +60,19 @@ public:
 	 * */
 	
 	void insert(const typeOfData &data_parameter, const typeOfPriority &priority_parameter);
-	/* Them phan tu vao hang uu tien, neu thanh cong thi is_success nhan gia tri true,
-	 * neu khong thanh cong thi is_success nhan gia tri false.
+	/* Them phan tu vao hang uu tien.
+	 * */
+
+	void insert(const CNope &new_nope);
+	/* Them phan tu vao hang uu tien.
 	 * */
 
 	void upSizeArray();
 	/* Ham dung de tang kich thuoc cua mang array_datas 
 	 * trong truong hop mang day.
+	 * */
+
+	int lengthOfPriQueue();
+	/* Tra ve so luong phan tu trong hang uu tien.
 	 * */
 };

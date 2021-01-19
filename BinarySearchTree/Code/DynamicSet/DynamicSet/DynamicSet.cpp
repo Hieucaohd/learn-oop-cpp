@@ -136,7 +136,7 @@ void CDynamicSet::deleteElementByKey(const typeOfKey & key, CNope * &root_ptr)
 		root_ptr = root_ptr->m_right;
 		delete old_root;
 	}
-	else
+	else if (root_ptr->m_right == NULL)
 	/* Neu cay con phai rong.*/
 	{
 		CNope *old_root = root_ptr;

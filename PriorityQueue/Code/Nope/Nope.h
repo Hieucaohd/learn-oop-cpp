@@ -9,17 +9,18 @@ using namespace std;
 class CPriorityQueue;
 
 /* Dinh nghia kieu cua du lieu vao kieu cua muc uu tien.*/
-typedef int typeOfData;
+typedef char typeOfData;
 typedef int typeOfPriority;
 
 class CNope
 {
 private:
+public:
 	typeOfData m_data; // bien luu lai du lieu cua phan tu.
 	typeOfPriority m_priority; // bien luu lai gia tri uu tien cua phan tu.
-	CNope *m_left;
+	CNope *m_left; 
 	CNope *m_right;
-public:
+
 	friend class CPriorityQueue; // khai bao lop ban.
 
 	CNope();
@@ -34,7 +35,19 @@ public:
 	/* Destructor.
 	 * */
 
-	void operator = (const CNope &nope_parameter);
+	CNope operator = (const CNope &nope_parameter);
 	/* Dinh nghia toan tu gan.
+	 * */
+
+	friend void copyTree(CNope * from_nope, CNope * &to_nope);
+	/* Sao chep cac dinh tu from_nope sang to_nope.
+	 * */
+
+	friend ostream &operator << (ostream &output, CNope nope_parameter);
+	/* Dinh nghia phep in phan tu.
+	 * */
+	
+	friend ostream &operator << (ostream &output, CNope *nope_parameter);
+	/* Dinh nghia phep in con tro cua phan tu.
 	 * */
 };

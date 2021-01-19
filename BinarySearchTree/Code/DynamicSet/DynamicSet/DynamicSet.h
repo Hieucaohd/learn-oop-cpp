@@ -60,6 +60,8 @@ public:
 	/* Dinh nghia toan tu gan.
 	 * */
 
+	friend void copyTree(const CNope * from_root_ptr, CNope * &to_root_ptr);
+
 	~CDynamicSet();
 	/* Destructor.
 	 * */
@@ -102,5 +104,4 @@ public:
 	 * Postcondition: tra ve du lieu co khoa lon nhat trong tap.
 	 * */
 
-	friend void copyTreeTry(const CNope * from_root_ptr, CNope * &to_root_ptr);
 };

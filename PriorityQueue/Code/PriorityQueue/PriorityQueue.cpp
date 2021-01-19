@@ -110,7 +110,8 @@ CNope CPriorityQueue::findMin()
 CNope CPriorityQueue::deleteMin()
 {
 	/* Lay du lieu.*/
-	CNope take_nope = m_array_datas[0];
+	CNope take_nope;
+	take_nope = m_array_datas[0];
 
 	/* Thay the phan tu o goc bang phan tu o muc thap nhat va o ngoai cung ben phai.*/
 	m_array_datas[0] = m_array_datas[m_last]; 
@@ -212,6 +213,45 @@ void CPriorityQueue::insert(const typeOfData &data_parameter, const typeOfPriori
 	} // End while.
 }
 
+void CPriorityQueue::insert(const CNope &new_nope)
+{
+	/* Trong truong hop mang da day thi ta
+	 * tang kich thuoc cua mang len.*/
+	upSizeArray();
+
+	/* Tang do dai cua mang them 1 doi vi, de chua phan tu moi.*/
+	m_last += 1;
+
+	/* Dau tien, them phan tu moi vao muc thap nhat, ngoai cung ben phai.*/
+	m_array_datas[m_last] = new_nope;
+
+	/* Sau do, dua phan tu moi len vi tri thich hop.*/
+	int child = m_last; // bien child luu lai chi so cua con.
+	int parent = findParent(child); // bien parent luu lai chi so cua cha.
+
+	while (child > 0)
+	/* Neu con van co cha.*/
+	{
+		if (m_array_datas[child].m_priority < m_array_datas[parent].m_priority)
+		/* Kiem tra xem gia tri uu tien cua con co nho hon cua cha khong.*/
+		{
+			/* Neu nho hon thi hoan doi cha voi con.*/
+			m_array_datas[child] = m_array_datas[parent];
+			m_array_datas[parent] = new_nope;
+
+			/* Sau do, dua con len vi tri cua cha de duyet tiep.*/
+			child = parent;
+			parent = findParent(child);
+		}
+		else
+		/* Neu gia tri uu tien cua con lon hon cua cha.*/
+		{
+			/* Thi ket thuc vong lap.*/
+			break;
+		}
+	} // End while.
+}
+
 void CPriorityQueue::shiftDown(int index)
 {
 	CNope take_nope = m_array_datas[index]; // bien take_nope luu du lieu o dinh index.
@@ -253,4 +293,9 @@ void CPriorityQueue::shiftDown(int index)
 		}
 
 	} // end while.
+}
+
+int CPriorityQueue::lengthOfPriQueue()
+{
+	return m_last + 1;
 }
