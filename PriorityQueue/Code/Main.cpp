@@ -76,13 +76,20 @@ void thu3()
 	cout << pri_queue->findMin().m_right->m_priority << endl;
 }
 
+void themKiTu(string &xau, const int &so_luong, const char &ki_tu)
+{
+	for (int i = 0; i < so_luong; i++)
+	{
+		xau.push_back(ki_tu);
+	}
+}
+
 void thu4()
 {
-	string xau = "akkkccccddddddddhhhhhhhhhh";
+	string xau = "haehehh";
 
-	CPriorityQueue *pri_queue = makeTree(xau);
-
-
+	cout << xau << endl;
+	cout << maHoaXau(xau) << endl;
 }
 
 int main(int argc, char *argv[])

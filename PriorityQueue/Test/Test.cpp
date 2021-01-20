@@ -6,7 +6,14 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-	int a = (int)(10/2.0 - 1);
-	cout << a << endl;
+	string xau;
+	char a = 'a';
+	char b = 'b';
+
+	xau.push_back(a);
+	xau.push_back(b);
+
+	xau += "hieu";
+	cout << xau << endl;
 	return 0;
 }

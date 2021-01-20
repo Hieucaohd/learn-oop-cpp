@@ -13,3 +13,42 @@ CPriorityQueue* makeTree(string xau);
 /* Tao ra cay nhi phan chua cac dinh la cac ki tu cung voi so lan 
  * xuat hien cua chung trong xau.
  * */
+
+string codeOutput(string xau);
+/* Xuat ra ma code cua xau.
+ * */
+
+struct CCodeAndCharacter
+{
+	char m_ki_tu;
+	string m_ma_code;
+};
+
+ostream &operator << (ostream &output, CCodeAndCharacter ma_va_ki_tu);
+/* Dinh nghia toan tu in ra ki tu va ma code tuong ung cua no.
+ * */
+
+bool laNopeLa(CNope *nope_ptr);
+/* Kiem tra xem nope_ptr co phai la nope la hay khong.
+ * */
+
+bool ketThucChua(CNope *nope_ptr);
+/* Kiem tra xem 2 cay con trai va phai cua nope_ptr co phai la nope la hay khong.
+ * Neu dung thi tra ve true.
+ * Neu sai thi tra ve false.
+ * */
+
+void maHoaTuongUngCuaMoiKiTu(CNope *nope_ptr, CCodeAndCharacter array_ma_code[]);
+/* Ham luu ki tu va ma code cua no trong mang array_ma_code[].
+ * Ta loi dung ket qua sau:
+ * 		- O moi muc cua cay nhi phan ta se co mot la va mot cay khong phai la la.
+ * 		- Dinh la la la dinh can lay.
+ * */
+
+string timMaTrongDay(const char &ki_tu, const CCodeAndCharacter array_ma_code[], const int &so_luong_phan_tu);
+/* Ham tim dang ma hoa cua ki tu trong day chua cac ki tu va ma hoa cua no.
+ * */
+
+string maHoaXau(const string &xau);
+/* Tra ve dang ma hoa cua xau.
+ * */

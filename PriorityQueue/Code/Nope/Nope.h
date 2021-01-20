@@ -37,10 +37,16 @@ public:
 
 	CNope operator = (const CNope &nope_parameter);
 	/* Dinh nghia toan tu gan.
+	 * Khi muon su dung toan tu gan, ta nen tao constructor truoc.
+	 * Khong nen gan luon nhu the nay: CNope nope_2 = nope_1;
+	 * Ma nen lam nhu the nay:
+	 * 		Cnope nope_2;
+	 * 		nope_2 = nope_1;
 	 * */
 
 	friend void copyTree(CNope * from_nope, CNope * &to_nope);
 	/* Sao chep cac dinh tu from_nope sang to_nope.
+	 * Phuc vu cai dat toan tu gan va constructor copy.
 	 * */
 
 	friend ostream &operator << (ostream &output, CNope nope_parameter);
