@@ -5,6 +5,7 @@
 #include "PriorityQueue/PriorityQueue.h"
 #include "Nope/Nope.h"
 #include "HuffmanCode/HuffmanCode.h"
+#include "Stack/Stack.h"
 
 using namespace std;
 
@@ -86,10 +87,52 @@ void themKiTu(string &xau, const int &so_luong, const char &ki_tu)
 
 void thu4()
 {
-	string xau = "haehehh";
-
+	string xau = "ab";
 	cout << xau << endl;
 	cout << maHoaXau(xau) << endl;
+}
+
+void thu5()
+{
+	string xau;
+	cin >> xau;
+	CStack stack_1;
+	stack_1.push(xau);
+	cout << stack_1.pop() << endl;
+}
+
+void thu6()
+{
+	string xau = "anh yeu em";
+	CStack stack_string;
+	string ma_hoa;
+	/* Tao ra cay nhi phan chua cac dinh la la cac ki tu va ma hoa tuong ung cua chung.*/
+	CPriorityQueue *pri_queue = makeTree(xau);
+	CNope take_nope;
+	take_nope = pri_queue->deleteMin();
+	CNope *nope_ptr = &take_nope;
+	
+	/* Khoi tao mang de luu cac ki tu va ma hoa tuong ung cua chung.*/
+	int so_luong_phan_tu = frequencyOfCharater(xau)->lengthOfPriQueue();
+	CCodeAndCharacter array_ma_code[so_luong_phan_tu];
+	int dem = 0;
+
+	/* Luu cac ki tu va ma hoa tuong ung cua chung vao mang array_ma_code.*/
+	codeOfCharacter(nope_ptr, stack_string, ma_hoa, array_ma_code, dem);
+
+	cout << endl;
+
+	for (int i = 0; i < so_luong_phan_tu; i++)
+	{
+		cout << array_ma_code[i].m_ki_tu << " - " << array_ma_code[i].m_ma_code << endl;
+	}
+}
+
+void thu7()
+{
+	string xau = "abcdefg";
+	CPriorityQueue *pri_queue = makeTree(xau);
+	cout << pri_queue->findMin().m_right->m_right->m_left  << endl;
 }
 
 int main(int argc, char *argv[])

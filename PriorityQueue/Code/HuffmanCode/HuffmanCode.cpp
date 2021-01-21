@@ -102,6 +102,7 @@ bool ketThucChua(CNope *nope_ptr)
 }
 
 void maHoaTuongUngCuaMoiKiTu(CNope *nope_ptr, CCodeAndCharacter array_ma_code[])
+/* Chi ap dung doi voi xau co cac ki tu voi so lan xuat hien khac nhau.*/
 {
 	string ma_code; // bien de luu ma hoa tuong ung cua moi ki tu.
 	int dem = 0; // bien de luu cac chi so trong day array_ma_code.
@@ -144,6 +145,28 @@ void maHoaTuongUngCuaMoiKiTu(CNope *nope_ptr, CCodeAndCharacter array_ma_code[])
 	array_ma_code[dem].m_ma_code = ma_code;
 }
 
+void codeOfCharacter(CNope *nope_ptr, CStack &stack_string, string &ma_code, CCodeAndCharacter array_ma_code[], int &dem)
+{
+	if (nope_ptr->m_left == NULL && nope_ptr->m_right == NULL)
+	/* Neu gap phan tu la la.*/
+	{
+		array_ma_code[dem].m_ki_tu = nope_ptr->m_data;
+		array_ma_code[dem].m_ma_code = ma_code;
+		dem += 1;
+		ma_code = stack_string.pop();
+	}
+	else
+	/* Neu khong gap phan tu la la thi ta di tiep sang ben trai truoc
+	 * sau do di sang ben phai.*/
+	{
+		stack_string.push(ma_code);
+		ma_code.push_back('0');
+		codeOfCharacter(nope_ptr->m_left, stack_string, ma_code, array_ma_code, dem);
+		ma_code.push_back('1');
+		codeOfCharacter(nope_ptr->m_right, stack_string, ma_code, array_ma_code, dem);
+	}
+}
+
 string timMaTrongDay(const char &ki_tu, const CCodeAndCharacter array_ma_code[], const int &so_luong_phan_tu)
 {
 	for (int i = 0; i < so_luong_phan_tu; i++)
@@ -168,9 +191,12 @@ string maHoaXau(const string &xau)
 	/* Khoi tao mang de luu cac ki tu va ma hoa tuong ung cua chung.*/
 	int so_luong_phan_tu = frequencyOfCharater(xau)->lengthOfPriQueue();
 	CCodeAndCharacter array_ma_code[so_luong_phan_tu];
+	int dem = 0; // bien dem luu lai cac chi so cua mang.
 
 	/* Luu cac ki tu va ma hoa tuong ung cua chung vao mang array_ma_code.*/
-	maHoaTuongUngCuaMoiKiTu(nope_ptr, array_ma_code);
+	CStack stack_string; // stack phuc vu viec cai dat de quy.
+	string ma_code; // bien luu lai tuong ma code cua tung ki tu.
+	codeOfCharacter(nope_ptr, stack_string, ma_code, array_ma_code, dem);
 
 	/* Lap het cac ki tu trong xau va lay ra ma hoa tuong ung cua moi ki tu.*/
 	for (int i = 0; i < xau.length(); i++)
@@ -180,3 +206,4 @@ string maHoaXau(const string &xau)
 
 	return ma_huff_cua_xau;
 }
+

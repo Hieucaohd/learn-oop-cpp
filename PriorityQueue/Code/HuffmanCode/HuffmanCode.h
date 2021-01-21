@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "../PriorityQueue/PriorityQueue.h"
+#include "../Stack/Stack.h"
 
 CPriorityQueue* frequencyOfCharater(string xau);
 /* Tao ra mot hang uu tien luu tan xuat cac ki tu trong xau.
@@ -12,10 +13,6 @@ CPriorityQueue* frequencyOfCharater(string xau);
 CPriorityQueue* makeTree(string xau);
 /* Tao ra cay nhi phan chua cac dinh la cac ki tu cung voi so lan 
  * xuat hien cua chung trong xau.
- * */
-
-string codeOutput(string xau);
-/* Xuat ra ma code cua xau.
  * */
 
 struct CCodeAndCharacter
@@ -51,4 +48,8 @@ string timMaTrongDay(const char &ki_tu, const CCodeAndCharacter array_ma_code[],
 
 string maHoaXau(const string &xau);
 /* Tra ve dang ma hoa cua xau.
+ * */
+
+void codeOfCharacter(CNope *nope_ptr, CStack &stack_string, string &ma_hoa, CCodeAndCharacter array_ma_code[], int &dem);
+/* Ma hoa tuong ung cua moi ki tu.
  * */

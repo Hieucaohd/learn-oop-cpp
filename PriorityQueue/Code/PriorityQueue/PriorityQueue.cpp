@@ -254,7 +254,8 @@ void CPriorityQueue::insert(const CNope &new_nope)
 
 void CPriorityQueue::shiftDown(int index)
 {
-	CNope take_nope = m_array_datas[index]; // bien take_nope luu du lieu o dinh index.
+	CNope take_nope;
+	take_nope = m_array_datas[index]; // bien take_nope luu du lieu o dinh index.
 	int parent = index; // bien parent luu lai chi so cua dinh cha.
 	int child = 2 * parent + 1; // bien child luu lai chi so cua dinh con trai.
 
