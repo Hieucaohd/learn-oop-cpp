@@ -145,7 +145,7 @@ void maHoaTuongUngCuaMoiKiTu(CNope *nope_ptr, CCodeAndCharacter array_ma_code[])
 	array_ma_code[dem].m_ma_code = ma_code;
 }
 
-void codeOfCharacter(CNope *nope_ptr, CStack &stack_string, string &ma_code, CCodeAndCharacter array_ma_code[], int &dem)
+void codeOfCharacter(CNope *nope_ptr, CStack &stack_string, string &ma_code, CCodeAndCharacter array_ma_code[], int &dem, const int &so_luong_phan_tu)
 {
 	if (nope_ptr->m_left == NULL && nope_ptr->m_right == NULL)
 	/* Neu gap phan tu la la.*/
@@ -153,7 +153,11 @@ void codeOfCharacter(CNope *nope_ptr, CStack &stack_string, string &ma_code, CCo
 		array_ma_code[dem].m_ki_tu = nope_ptr->m_data;
 		array_ma_code[dem].m_ma_code = ma_code;
 		dem += 1;
-		ma_code = stack_string.pop();
+
+		if (dem < so_luong_phan_tu)
+		{
+			ma_code = stack_string.pop();
+		}
 	}
 	else
 	/* Neu khong gap phan tu la la thi ta di tiep sang ben trai truoc
@@ -161,9 +165,9 @@ void codeOfCharacter(CNope *nope_ptr, CStack &stack_string, string &ma_code, CCo
 	{
 		stack_string.push(ma_code);
 		ma_code.push_back('0');
-		codeOfCharacter(nope_ptr->m_left, stack_string, ma_code, array_ma_code, dem);
+		codeOfCharacter(nope_ptr->m_left, stack_string, ma_code, array_ma_code, dem, so_luong_phan_tu);
 		ma_code.push_back('1');
-		codeOfCharacter(nope_ptr->m_right, stack_string, ma_code, array_ma_code, dem);
+		codeOfCharacter(nope_ptr->m_right, stack_string, ma_code, array_ma_code, dem, so_luong_phan_tu);
 	}
 }
 
@@ -196,7 +200,7 @@ string maHoaXau(const string &xau)
 	/* Luu cac ki tu va ma hoa tuong ung cua chung vao mang array_ma_code.*/
 	CStack stack_string; // stack phuc vu viec cai dat de quy.
 	string ma_code; // bien luu lai tuong ma code cua tung ki tu.
-	codeOfCharacter(nope_ptr, stack_string, ma_code, array_ma_code, dem);
+	codeOfCharacter(nope_ptr, stack_string, ma_code, array_ma_code, dem, so_luong_phan_tu);
 
 	/* Lap het cac ki tu trong xau va lay ra ma hoa tuong ung cua moi ki tu.*/
 	for (int i = 0; i < xau.length(); i++)
@@ -207,3 +211,28 @@ string maHoaXau(const string &xau)
 	return ma_huff_cua_xau;
 }
 
+string giaiMaXau(const string ma_huff_cua_xau, CNope *nope_ptr)
+{
+	string ma_giai;
+	CNope *run_ptr = nope_ptr;
+
+	for (int i = 0; i <= ma_huff_cua_xau.length(); i++)
+	{
+		if (run_ptr->m_left == NULL && run_ptr->m_right == NULL)
+		{
+			ma_giai.push_back(run_ptr->m_data);
+			run_ptr = nope_ptr;
+		}
+
+		if (ma_huff_cua_xau[i] == '0')
+		{
+			run_ptr = run_ptr->m_left;
+		}
+		else if (ma_huff_cua_xau[i] == '1')
+		{
+			run_ptr = run_ptr->m_right;
+		}
+	}
+
+	return ma_giai;
+}
