@@ -55,3 +55,5 @@ string maHoaXau(const string &xau);
  * */
 
 string giaiMaXau(const string ma_huff_cua_xau, CNope *nope_ptr);
+/* Tra ve xau ban dau tu ma hoa huff.
+ * */

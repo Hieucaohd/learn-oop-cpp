@@ -59,7 +59,9 @@ void thu2()
 
 void thu3()
 {
-	string xau = "aeehhhh";
+	string xau;
+	fflush(stdin);
+	getline(cin, xau);
 
 	/* Tao ra cay nhi phan chua cac dinh la la cac ki tu va ma hoa tuong ung cua chung.*/
 	CPriorityQueue *pri_queue = makeTree(xau);
