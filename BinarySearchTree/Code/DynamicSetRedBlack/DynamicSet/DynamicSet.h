@@ -52,7 +52,7 @@ public:
 	/* Constructor copy.
 	 * */
 
-	CDynamicSet(const CDynamicSet * set_ptr);
+	 CDynamicSet(const CDynamicSet * set_ptr);
 	/* Constructor copy cua con tro.
 	 * */
 
