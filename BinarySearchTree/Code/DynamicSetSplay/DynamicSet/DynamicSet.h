@@ -36,6 +36,8 @@ public:
 	 * */
 
 	friend void copyTree(const CNope * from_root_ptr, CNope * &to_root_ptr);
+	/* Sao chep cac dinh tu cay from_root_ptr sang cay to_root_ptr.
+	 * */
 
 
 
@@ -59,6 +61,7 @@ public:
 
 	void deleteElementByKey(const typeOfKey & key, CNope * &root_ptr, typeOfData &take_data);
 	/* Loai du lieu co khoa key khoi cay co goc tro boi root_ptr.
+	 * Du lieu tu khoa bi xoa duoc luu vao bien take_data.
 	 * */
 
 	typeOfData deleteElementByKey(const typeOfKey & key);
@@ -71,6 +74,8 @@ public:
 
 	void insert(const typeOfData & data_parameter, const typeOfKey & key_parameter, CNope * &root_ptr, string &way);
 	/* Xen du lieu moi data_parameter vao cay co goc tro boi root_ptr.
+	 * Bien way luu lai duong di de xac dinh kieu zig va zag trong qua trinh loe cay tu dinh moi
+	 * them vao len den goc cay.
 	 * */
 
 	void insert(const typeOfData & data_parameter, const typeOfKey & key_parameter);
@@ -83,6 +88,10 @@ public:
 
 	void search(const typeOfKey & key, typeOfData &take_data, CNope * &root_ptr, string &way, bool &is_found);
 	/* Tim kiem du lieu co khoa la key trong cay co goc tro boi root_ptr.
+	 * Neu tim thay thi luu du lieu vao bien take_data va is_fould nhan gia tri tru.
+	 * Neu khong tim thay thi is_found nhan gia tri false.
+	 * Bien way luu lai duong di de xac dinh kieu zig va zag trong qua trinh loe cay tu dinh can tim 
+	 * len den goc cay.
 	 * */
 
 	bool search(const typeOfKey & key, typeOfData &take_data);
@@ -98,6 +107,8 @@ public:
 
 	void min(CNope * &root_ptr, CNope &take_nope, string &way, const CNope * initial_nope_ptr);
 	/* Tra ve du lieu co khoa nho nhat tren cay co goc tro boi root_ptr.
+	 * Bien way va bien initial_nope_ptr phuc vu cho qua trinh loe cay.
+	 * Bien take_nope luu lai du lieu tu dinh co khoa nho nhat trong cay.
 	 * */
 
 	CNope min();
@@ -111,6 +122,8 @@ public:
 
 	void max(CNope * &root_ptr, CNope &take_nope, string &way, const CNope * initial_nope_ptr);
 	/* Tra ve du lieu co khoa nho nhat tren cay co goc tro boi root_ptr.
+	 * Bien way va bien initial_nope_ptr phuc vu cho qua trinh loe cay.
+	 * Bien take_nope luu lai du lieu tu dinh co khoa nho nhat trong cay.
 	 * */
 
 	CNope max();

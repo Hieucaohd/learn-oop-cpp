@@ -174,13 +174,17 @@ typeOfData CDynamicSet::deleteElementByKey(const typeOfKey & key)
 void CDynamicSet::deleteElementByKey(const typeOfKey & key, CNope * &root_ptr, typeOfData &take_data)
 {
 	if (search(key, take_data))
+	/* Neu khoa can xoa co trong cay.*/
 	{
+		/* Tim khoa nho nhat o cay con phai sau do loe no len dinh cua cay con phai.*/
 		CNope take_nope;
 		string way;
 		min(root_ptr->m_right, take_nope, way, root_ptr->m_right);
 
+		/* Gan cay.*/
 		root_ptr->m_right->m_left = root_ptr->m_left;
 		
+		/* Xoa va thu hoi bo nho.*/
 		CNope * old_ptr = root_ptr;
 		root_ptr = root_ptr->m_right;
 
@@ -346,7 +350,7 @@ CNope CDynamicSet::max()
 void CDynamicSet::max(CNope * &root_ptr, CNope &take_nope, string &way,const CNope * initial_nope_ptr)
 {
 	if (root_ptr->m_right == NULL)
-	/* Neu gap dinh khong co cay con trai.*/
+	/* Neu gap dinh khong co cay con phai.*/
 	{
 		take_nope.m_data = root_ptr->m_data;
 		take_nope.m_key = root_ptr->m_key;
