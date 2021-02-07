@@ -260,7 +260,7 @@ void CPriorityQueue::shiftDown(int index)
 	int child = 2 * parent + 1; // bien child luu lai chi so cua dinh con trai.
 
 	while (child <= m_last)
-	/* Khi ma phan tu dang xet van dang o trong day.*/
+	/* Khi ma phan tu dang xet van dang o trong cay.*/
 	{
 		int right = child + 1; // bien right luu lai chi so cua dinh con phai.
 
