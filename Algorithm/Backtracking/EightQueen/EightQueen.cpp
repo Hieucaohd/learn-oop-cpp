@@ -60,6 +60,7 @@ void queen(int * arrayColumn, int row, int &count, const int &size)
 	{
 		printArray(arrayColumn, size);
 		count ++;
+		return;
 	}
 
 	for (int i = 0; i < size; i++)
@@ -68,7 +69,6 @@ void queen(int * arrayColumn, int row, int &count, const int &size)
 		arrayColumn[row] = i;
 
 		if (check(arrayColumn, row))
-		/*comment*/
 		{
 			queen(arrayColumn, row + 1, count, size);   
 		}
@@ -125,7 +125,7 @@ int main(int argc, char *argv[])
 	int *arrayColumn = new int[8];
 	int row = 0;
 	int count = 0;
-	int size = 9;
+	int size = 8;
 
 	queen(arrayColumn, row, count, size);
 
